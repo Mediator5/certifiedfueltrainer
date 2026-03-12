@@ -17,11 +17,14 @@ import T from "@/lib/tokens";
 const NAV_LINKS = [
   { label: "Home",         href: "/" },
   { label: "For Drivers",  href: "/fuel-hauling-made-easy",
-    children: ["Fuel Hauling Made Easy", "Buy the Workbook", "Free Checklist Download"] },
+    // children: ["Fuel Hauling Made Easy", "Buy the Workbook", "Free Checklist Download"] 
+},
   { label: "For Trainers", href: "/certified-to-lead-workshop",
-    children: ["Certified to Lead™ Workshop", "Certification Details", "Register Now"] },
+    // children: ["Certified to Lead™ Workshop", "Certification Details", "Register Now"] 
+},
   { label: "Resources",    href: "/resources",
-    children: ["Blog & Articles", "Free Downloads", "Newsletter"] },
+    // children: ["Blog & Articles", "Free Downloads", "Newsletter"] 
+},
   { label: "Contact",      href: "/contact" },
 ];
 
