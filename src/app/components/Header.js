@@ -240,7 +240,7 @@ export default function Header() {
 
             <div className="divider-v"/>
 
-            <button className="btn btn--sm" style={{
+            <a href="/contact" className="btn btn--sm" style={{
               background: "rgba(255,255,255,0.07)",
               border: "1px solid rgba(255,255,255,0.15)",
               color: T.textDim, display: "flex", alignItems: "center", gap: 6,
@@ -248,8 +248,8 @@ export default function Header() {
               onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.13)"; e.currentTarget.style.color = T.textWhite; }}
               onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.07)"; e.currentTarget.style.color = T.textDim; }}>
               <UserIcon size={12}/>
-              Client Login
-            </button>
+              contact
+            </a>
           </div>
         </div>
       </div>

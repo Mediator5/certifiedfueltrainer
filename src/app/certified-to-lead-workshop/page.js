@@ -1006,7 +1006,7 @@ function Pricing() {
                 href="https://buy.stripe.com/your-workshop-link"
                 ────────────────────────────────────────────────────
               */}
-              <a href="#"
+              <a href="/certified-to-lead-workshop#register"
                 className="btn btn--orange btn--lg btn--full btn--pulse"
                 style={{ fontSize: 18, marginBottom: 12 }}>
                 <LockIcon size={16} color="#fff"/>
@@ -1300,7 +1300,7 @@ function FinalCTA() {
           {/*
             Replace href="#" with your registration URL when ready.
           */}
-          <a href="#" className="btn btn--orange btn--lg btn--pulse">
+          <a href="/certified-to-lead-workshop#register" className="btn btn--orange btn--lg btn--pulse">
             <LockIcon size={15} color="#fff"/>
             Register Now at Early Bird Rate — $895
           </a>
