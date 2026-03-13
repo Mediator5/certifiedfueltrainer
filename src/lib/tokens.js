@@ -19,8 +19,8 @@ const T = {
   navy:          "#0A1628",
   navyMid:       "#122040",
   navyLight:     "#1C3050",
-  orange:        "#b31942",
-  orangeHover:   "#b31942",
+  orange:        "#C8A84B",
+  orangeHover:   "#C8A84B",
   gold:          "#C8A84B",
 
   /* ── Surfaces ───────────────────── */

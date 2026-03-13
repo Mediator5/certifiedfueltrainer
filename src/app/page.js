@@ -593,7 +593,7 @@ function Testimonials() {
                 */}
                 <div style={{
                   width: 48, height: 48, borderRadius: "50%",
-                  background: `linear-gradient(135deg, ${T.orange}, ${T.gold})`,
+                  background: `linear-gradient(135deg, ${T.gold}, ${T.gold})`,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   flexShrink: 0,
                 }}>
