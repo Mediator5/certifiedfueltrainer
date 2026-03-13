@@ -189,7 +189,7 @@ function Hero() {
             <span style={{
               fontFamily: "var(--font-display)", fontWeight: 700,
               fontSize: 11.5, letterSpacing: "0.16em",
-              textTransform: "uppercase", color: T.orange,
+              textTransform: "uppercase", color: T.gold,
             }}>
               fuelhaulingtraining.com
             </span>
@@ -205,7 +205,7 @@ function Hero() {
           }}>
             The Complete<br/>
             Training System for<br/>
-            <span style={{ color: T.orange }}>Fuel Transport</span>{" "}
+            <span style={{ color: T.gold }}>Fuel Transport</span>{" "}
             <span style={{ color: T.gold }}>Professionals.</span>
           </h1>
 
