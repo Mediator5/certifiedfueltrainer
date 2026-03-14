@@ -27,9 +27,9 @@ import T from "@/lib/tokens";
    CONTACT INFO — update these constants in one place
 ════════════════════════════════════════════════════════ */
 const CONTACT_INFO = {
-  phone:   "+1 (800) 555-0199",
-  email:   "info@fuelhaulingtraining.com",
-  hours:   "Mon – Fri · 8:00 AM – 5:00 PM CST",
+  phone: "405.239.8853",
+  email: "info@fuelhaulingtraining.com",
+  hours: "Mon – Fri · 8:00 AM – 5:00 PM CST",
 };
 
 const ENQUIRY_TYPES = [
@@ -42,63 +42,63 @@ const ENQUIRY_TYPES = [
 const PhoneIcon = ({ size = 20, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
   </svg>
 );
 const MailIcon = ({ size = 20, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="4" width="20" height="16" rx="2"/>
-    <polyline points="22,6 12,13 2,6"/>
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <polyline points="22,6 12,13 2,6" />
   </svg>
 );
 const MapPinIcon = ({ size = 20, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-    <circle cx="12" cy="10" r="3"/>
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+    <circle cx="12" cy="10" r="3" />
   </svg>
 );
 const ClockIcon = ({ size = 20, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"/>
-    <polyline points="12 6 12 12 16 14"/>
+    <circle cx="12" cy="12" r="10" />
+    <polyline points="12 6 12 12 16 14" />
   </svg>
 );
 const ArrowRight = ({ size = 15, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="5" y1="12" x2="19" y2="12"/>
-    <polyline points="12 5 19 12 12 19"/>
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12 5 19 12 12 19" />
   </svg>
 );
 const CheckIcon = ({ size = 20, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="20 6 9 17 4 12"/>
+    <polyline points="20 6 9 17 4 12" />
   </svg>
 );
 const ChevronDown = ({ size = 16, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="6 9 12 15 18 9"/>
+    <polyline points="6 9 12 15 18 9" />
   </svg>
 );
 const FbIcon = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
   </svg>
 );
 const TwIcon = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.851L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.851L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 );
 const LiIcon = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
-    <circle cx="4" cy="4" r="2"/>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+    <circle cx="4" cy="4" r="2" />
   </svg>
 );
 
@@ -157,14 +157,14 @@ function Hero() {
           linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px)
         `,
         backgroundSize: "64px 64px",
-      }}/>
+      }} />
       {/* Glow */}
       <div style={{
         position: "absolute", top: -60, right: "25%", zIndex: 0,
         width: 420, height: 420, borderRadius: "50%",
         background: "radial-gradient(circle, rgba(232,97,10,0.08) 0%, transparent 70%)",
         pointerEvents: "none",
-      }}/>
+      }} />
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         {/* Breadcrumb */}
@@ -208,7 +208,7 @@ function Hero() {
             textTransform: "uppercase", letterSpacing: "0.01em",
             marginBottom: 20,
           }}>
-            We'd Love to<br/>
+            We'd Love to<br />
             <span style={{ color: T.orange }}>Hear From</span>{" "}
             <span style={{ color: T.gold }}>You.</span>
           </h1>
@@ -231,7 +231,7 @@ function Hero() {
         position: "absolute", bottom: -2, left: 0, right: 0, zIndex: 2,
         height: 56, background: T.surface,
         clipPath: "polygon(0 100%, 100% 0, 100% 100%)",
-      }}/>
+      }} />
     </section>
   );
 }
@@ -246,10 +246,10 @@ function ContactSection() {
     email: "", phone: "",
     message: "",
   });
-  const [focused, setFocused]     = useState({});
-  const [errors, setErrors]       = useState({});
+  const [focused, setFocused] = useState({});
+  const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading]     = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const set = (field) => (e) =>
     setForm(prev => ({ ...prev, [field]: e.target.value }));
@@ -257,10 +257,10 @@ function ContactSection() {
   const validate = () => {
     const e = {};
     if (!form.firstName.trim()) e.firstName = "First name is required.";
-    if (!form.lastName.trim())  e.lastName  = "Last name is required.";
-    if (!form.email.trim())     e.email     = "Email address is required.";
+    if (!form.lastName.trim()) e.lastName = "Last name is required.";
+    if (!form.email.trim()) e.email = "Email address is required.";
     else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = "Please enter a valid email.";
-    if (!form.message.trim())   e.message   = "Message is required.";
+    if (!form.message.trim()) e.message = "Message is required.";
     return e;
   };
 
@@ -297,28 +297,28 @@ function ContactSection() {
 
   const focusProps = (field) => ({
     onFocus: () => setFocused(p => ({ ...p, [field]: true })),
-    onBlur:  () => setFocused(p => ({ ...p, [field]: false })),
+    onBlur: () => setFocused(p => ({ ...p, [field]: false })),
   });
 
   /* ── Sidebar contact items ── */
   const contactItems = [
     {
-      icon: <PhoneIcon size={20} color={T.orange}/>,
+      icon: <PhoneIcon size={20} color={T.orange} />,
       label: "Phone",
       value: CONTACT_INFO.phone,
-      href:  `tel:${CONTACT_INFO.phone.replace(/\D/g, "")}`,
+      href: `tel:${CONTACT_INFO.phone.replace(/\D/g, "")}`,
     },
     {
-      icon: <MailIcon size={20} color={T.orange}/>,
+      icon: <MailIcon size={20} color={T.orange} />,
       label: "Email",
       value: CONTACT_INFO.email,
-      href:  `mailto:${CONTACT_INFO.email}`,
+      href: `mailto:${CONTACT_INFO.email}`,
     },
     {
-      icon: <ClockIcon size={20} color={T.orange}/>,
+      icon: <ClockIcon size={20} color={T.orange} />,
       label: "Office Hours",
       value: CONTACT_INFO.hours,
-      href:  null,
+      href: null,
     },
   ];
 
@@ -351,7 +351,7 @@ function ContactSection() {
                   display: "flex", alignItems: "center", justifyContent: "center",
                   margin: "0 auto 24px",
                 }}>
-                  <CheckIcon size={32} color="#22c55e"/>
+                  <CheckIcon size={32} color="#22c55e" />
                 </div>
                 <h2 style={{
                   fontFamily: "var(--font-display)", fontWeight: 900,
@@ -370,11 +370,11 @@ function ContactSection() {
                 <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
                   <a href="/fuel-hauling-made-easy" className="btn btn--orange">
                     View the Workbook
-                    <ArrowRight size={14} color="#fff"/>
+                    <ArrowRight size={14} color="#fff" />
                   </a>
                   <a href="/certified-to-lead-workshop" className="btn btn--navy">
                     Workshop Details
-                    <ArrowRight size={14} color="#fff"/>
+                    <ArrowRight size={14} color="#fff" />
                   </a>
                 </div>
               </div>
@@ -446,7 +446,7 @@ function ContactSection() {
                     </div>
 
                     {/* Enquiry type — hidden, always "General Enquiry" */}
-                    <input type="hidden" value="General Enquiry"/>
+                    <input type="hidden" value="General Enquiry" />
 
                     {/* Message */}
                     <Field label="Message" required error={errors.message}>
@@ -471,7 +471,7 @@ function ContactSection() {
                       style={{ marginTop: 4, opacity: loading ? 0.7 : 1, fontSize: 16 }}
                     >
                       {loading ? "Sending…" : "Send Message"}
-                      {!loading && <ArrowRight size={16} color="#fff"/>}
+                      {!loading && <ArrowRight size={16} color="#fff" />}
                     </button>
 
                     <p style={{
@@ -565,9 +565,9 @@ function ContactSection() {
                 </p>
                 <div style={{ display: "flex", gap: 8 }}>
                   {[
-                    { icon: <FbIcon size={15}/>, label: "Facebook", href: "https://facebook.com" },
-                    { icon: <TwIcon size={15}/>, label: "Twitter",  href: "https://twitter.com" },
-                    { icon: <LiIcon size={15}/>, label: "LinkedIn", href: "https://linkedin.com" },
+                    { icon: <FbIcon size={15} />, label: "Facebook", href: "https://facebook.com" },
+                    { icon: <TwIcon size={15} />, label: "Twitter", href: "https://twitter.com" },
+                    { icon: <LiIcon size={15} />, label: "LinkedIn", href: "https://linkedin.com" },
                   ].map(s => (
                     <a key={s.label} href={s.href}
                       target="_blank" rel="noopener noreferrer"
@@ -593,11 +593,11 @@ function ContactSection() {
             {/* Quick-action cards */}
             {[
               {
-                label:   "Workshop Registration",
-                body:    "Ready to register for Certified to Lead™? Secure your early bird seat.",
-                cta:     "Register Now — $895",
-                href:    "/certified-to-lead-workshop#register",
-                accent:  T.orange,
+                label: "Workshop Registration",
+                body: "Ready to register for Certified to Lead™? Secure your early bird seat.",
+                cta: "Register Now — $895",
+                href: "/certified-to-lead-workshop#register",
+                accent: T.orange,
               },
             ].map(card => (
               <div key={card.label} style={{
@@ -632,7 +632,7 @@ function ContactSection() {
                   onMouseLeave={e => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "translateY(0)"; }}
                 >
                   {card.cta}
-                  <ArrowRight size={12} color={card.accent === T.gold ? T.navy : "#fff"}/>
+                  <ArrowRight size={12} color={card.accent === T.gold ? T.navy : "#fff"} />
                 </a>
               </div>
             ))}
@@ -650,27 +650,27 @@ function QuickLinks() {
   const links = [
     {
       eyebrow: "For Drivers",
-      title:   "Fuel Hauling Made Easy",
-      body:    "The complete step-by-step workbook for fuel transport professionals.",
-      cta:     "Learn More",
-      href:    "/fuel-hauling-made-easy",
-      accent:  T.orange,
+      title: "Fuel Hauling Made Easy",
+      body: "The complete step-by-step workbook for fuel transport professionals.",
+      cta: "Learn More",
+      href: "/fuel-hauling-made-easy",
+      accent: T.orange,
     },
     {
       eyebrow: "For Trainers",
-      title:   "Certified to Lead™ Workshop",
-      body:    "One-day DOT-compliant certification. August 2026 · Oklahoma City.",
-      cta:     "Explore Workshop",
-      href:    "/certified-to-lead-workshop",
-      accent:  T.gold,
+      title: "Certified to Lead™ Workshop",
+      body: "One-day DOT-compliant certification. August 2026 · Oklahoma City.",
+      cta: "Explore Workshop",
+      href: "/certified-to-lead-workshop",
+      accent: T.gold,
     },
     {
       eyebrow: "Free Resources",
-      title:   "Checklists & Articles",
-      body:    "Free downloads, field guides, and training articles — no signup needed.",
-      cta:     "Browse Resources",
-      href:    "/resources",
-      accent:  T.orange,
+      title: "Checklists & Articles",
+      body: "Free downloads, field guides, and training articles — no signup needed.",
+      cta: "Browse Resources",
+      href: "/resources",
+      accent: T.orange,
     },
   ];
 
@@ -739,7 +739,7 @@ function QuickLinks() {
                 transition: "gap var(--ease-fast)",
               }}>
                 {link.cta}
-                <ArrowRight size={13} color={link.accent}/>
+                <ArrowRight size={13} color={link.accent} />
               </span>
             </a>
           ))}
@@ -755,9 +755,9 @@ function QuickLinks() {
 export default function ContactPage() {
   return (
     <main>
-      <Hero/>
-      <ContactSection/>
-      <QuickLinks/>
+      <Hero />
+      <ContactSection />
+      <QuickLinks />
 
       {/* Page-scoped responsive layout — no tokens */}
       <style jsx>{`

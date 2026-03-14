@@ -28,6 +28,7 @@
 
 import { useState } from "react";
 import T from "@/lib/tokens";
+import Image from "next/image";
 
 
 /* ════════════════════════════════════════════════════════
@@ -36,78 +37,78 @@ import T from "@/lib/tokens";
 const CheckIcon = ({ size = 16, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="20 6 9 17 4 12"/>
+    <polyline points="20 6 9 17 4 12" />
   </svg>
 );
 const ArrowRight = ({ size = 15, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="5" y1="12" x2="19" y2="12"/>
-    <polyline points="12 5 19 12 12 19"/>
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12 5 19 12 12 19" />
   </svg>
 );
 const StarIcon = ({ size = 15, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke="none">
-    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
   </svg>
 );
 const BookIcon = ({ size = 32, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
   </svg>
 );
 const ClipboardIcon = ({ size = 32, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
-    <line x1="9" y1="12" x2="15" y2="12"/>
-    <line x1="9" y1="16" x2="13" y2="16"/>
+    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+    <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+    <line x1="9" y1="12" x2="15" y2="12" />
+    <line x1="9" y1="16" x2="13" y2="16" />
   </svg>
 );
 const ShieldIcon = ({ size = 32, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
   </svg>
 );
 const AwardIcon = ({ size = 32, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="8" r="6"/>
-    <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+    <circle cx="12" cy="8" r="6" />
+    <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
   </svg>
 );
 const UsersIcon = ({ size = 32, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-    <circle cx="9" cy="7" r="4"/>
-    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
   </svg>
 );
 const DownloadIcon = ({ size = 16, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-    <polyline points="7 10 12 15 17 10"/>
-    <line x1="12" y1="15" x2="12" y2="3"/>
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="7 10 12 15 17 10" />
+    <line x1="12" y1="15" x2="12" y2="3" />
   </svg>
 );
 const LockIcon = ({ size = 14, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
   </svg>
 );
 const QuoteIcon = ({ size = 56, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke="none">
-    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
-    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
   </svg>
 );
 
@@ -141,12 +142,12 @@ function BookCoverPlaceholder() {
       <div style={{
         position: "absolute", left: 0, top: 0, bottom: 0,
         width: 8, background: T.orange,
-      }}/>
+      }} />
 
       {/* Background fuel drop watermark */}
       <div style={{ position: "absolute", bottom: -20, right: -20, opacity: 0.06 }}>
         <svg width="180" height="210" viewBox="0 0 22 26" fill={T.gold}>
-          <path d="M11 2C11 2 2 11 2 17a9 9 0 0 0 18 0C20 11 11 2 11 2z"/>
+          <path d="M11 2C11 2 2 11 2 17a9 9 0 0 0 18 0C20 11 11 2 11 2z" />
         </svg>
       </div>
 
@@ -157,7 +158,7 @@ function BookCoverPlaceholder() {
         border: `2px dashed rgba(232,97,10,0.4)`,
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
-        <BookIcon size={26} color={T.orange}/>
+        <BookIcon size={26} color={T.orange} />
       </div>
 
       <div style={{ textAlign: "center", zIndex: 1 }}>
@@ -166,20 +167,20 @@ function BookCoverPlaceholder() {
           color: "#fff", textTransform: "uppercase", lineHeight: 1.1,
           letterSpacing: "0.03em", marginBottom: 8,
         }}>
-          Fuel Hauling<br/>Made Easy
+          Fuel Hauling<br />Made Easy
         </div>
         <div style={{
           fontFamily: "var(--font-body)", fontSize: 12,
           color: T.textDim, lineHeight: 1.5,
         }}>
-          The Complete Training<br/>& Leadership Guide
+          The Complete Training<br />& Leadership Guide
         </div>
       </div>
 
       <div style={{
         width: "80%", height: 1,
         background: `linear-gradient(90deg, transparent, ${T.gold}, transparent)`,
-      }}/>
+      }} />
 
       <div style={{
         fontFamily: "var(--font-body)", fontSize: 11,
@@ -225,7 +226,7 @@ function Hero() {
           linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px)
         `,
         backgroundSize: "64px 64px",
-      }}/>
+      }} />
 
       {/* Orange glow */}
       <div style={{
@@ -233,7 +234,7 @@ function Hero() {
         width: 500, height: 500, borderRadius: "50%",
         background: "radial-gradient(circle, rgba(232,97,10,0.1) 0%, transparent 70%)",
         pointerEvents: "none",
-      }}/>
+      }} />
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div style={{
@@ -291,10 +292,10 @@ function Hero() {
               textTransform: "uppercase", letterSpacing: "0.01em",
               marginBottom: 20,
             }}>
-              Fuel Hauling<br/>
-              Made Easy:<br/>
+              Fuel Hauling<br />
+              Made Easy:<br />
               <span style={{ color: T.orange }}>The Complete</span>{" "}
-              <span style={{ color: T.gold }}>Training &</span><br/>
+              <span style={{ color: T.gold }}>Training &</span><br />
               <span style={{ color: T.gold }}>Leadership Guide.</span>
             </h1>
 
@@ -327,7 +328,7 @@ function Hero() {
                   fontSize: 12, letterSpacing: "0.08em",
                   textTransform: "uppercase", color: T.textDim,
                 }}>
-                  <CheckIcon size={11} color={T.gold}/>
+                  <CheckIcon size={11} color={T.gold} />
                   {badge}
                 </span>
               ))}
@@ -337,10 +338,10 @@ function Hero() {
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
               <a href="#buy" className="btn btn--orange btn--lg">
                 Buy Now — $79
-                <ArrowRight size={16} color="#fff"/>
+                <ArrowRight size={16} color="#fff" />
               </a>
               <a href="#free-checklist" className="btn btn--lg btn--outline-white">
-                <DownloadIcon size={15} color="#fff"/>
+                <DownloadIcon size={15} color="#fff" />
                 Get Free Sample First
               </a>
             </div>
@@ -348,7 +349,13 @@ function Hero() {
 
           {/* Right — book cover */}
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <BookCoverPlaceholder/>
+            {/* <BookCoverPlaceholder/> */}
+            <Image
+              src="/FINAL VERSION - FRONT AND BACK COVER DESIGN - Certified to Lead Handbook.png"
+              alt="book cover"
+              width={500}
+              height={400}
+            />
           </div>
         </div>
       </div>
@@ -358,7 +365,7 @@ function Hero() {
         position: "absolute", bottom: -2, left: 0, right: 0, zIndex: 2,
         height: 60, background: T.surface,
         clipPath: "polygon(0 100%, 100% 0, 100% 100%)",
-      }}/>
+      }} />
     </section>
   );
 }
@@ -369,27 +376,27 @@ function Hero() {
 function WhatsInside() {
   const features = [
     {
-      icon: <BookIcon size={28} color={T.orange}/>,
+      icon: <BookIcon size={28} color={T.orange} />,
       title: "10-Day Comprehensive Training Curriculum",
       body: "A structured, day-by-day system that takes you from the basics all the way through advanced leadership — no experience required to start.",
     },
     {
-      icon: <ClipboardIcon size={28} color={T.orange}/>,
+      icon: <ClipboardIcon size={28} color={T.orange} />,
       title: "Step-by-Step Loading & Unloading Procedures",
       body: "Every step documented clearly, with checklists you can use at the terminal. Never second-guess the process again.",
     },
     {
-      icon: <ShieldIcon size={28} color={T.orange}/>,
+      icon: <ShieldIcon size={28} color={T.orange} />,
       title: "Cross-Contamination & Spill Prevention Strategies",
       body: "Learn the exact techniques to prevent costly cross-dumps, spills, and contamination incidents that can end careers.",
     },
     {
-      icon: <UsersIcon size={28} color={T.orange}/>,
+      icon: <UsersIcon size={28} color={T.orange} />,
       title: "Driver Trainer Excellence & Leadership Modules",
       body: "Ready to move up? This section prepares you to train others — covering coaching techniques, communication, and accountability.",
     },
     {
-      icon: <AwardIcon size={28} color={T.orange}/>,
+      icon: <AwardIcon size={28} color={T.orange} />,
       title: "Certification Readiness & Assessment Tools",
       body: "Built-in quizzes, self-assessments, and readiness checklists so you know exactly when you're prepared to certify.",
     },
@@ -515,7 +522,7 @@ function ProTip() {
             <div style={{
               position: "absolute", top: 16, left: 24, opacity: 0.1,
             }}>
-              <QuoteIcon size={72} color={T.gold}/>
+              <QuoteIcon size={72} color={T.gold} />
             </div>
 
             {/* Pro Tip label */}
@@ -557,7 +564,7 @@ function ProTip() {
                 flexShrink: 0,
               }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                  <path d="M12 2C12 2 2 9.5 2 15.5a10 10 0 0 0 20 0C22 9.5 12 2 12 2z"/>
+                  <path d="M12 2C12 2 2 9.5 2 15.5a10 10 0 0 0 20 0C22 9.5 12 2 12 2z" />
                 </svg>
               </div>
               <span style={{
@@ -579,7 +586,7 @@ function ProTip() {
           <div style={{ marginTop: 28 }}>
             <a href="#buy" className="btn btn--orange btn--lg">
               Get the Full Workbook — $79
-              <ArrowRight size={16} color="#fff"/>
+              <ArrowRight size={16} color="#fff" />
             </a>
           </div>
         </div>
@@ -707,7 +714,7 @@ function WhoIsThisFor() {
             className="btn btn--navy"
             style={{ flexShrink: 0 }}>
             Explore Trainer Workshop
-            <ArrowRight size={14} color="#fff"/>
+            <ArrowRight size={14} color="#fff" />
           </a>
         </div>
       </div>
@@ -809,7 +816,7 @@ function PricingBuy() {
                   display: "flex", alignItems: "flex-start", gap: 10,
                 }}>
                   <span style={{ marginTop: 2, flexShrink: 0 }}>
-                    <CheckIcon size={15} color={T.orange}/>
+                    <CheckIcon size={15} color={T.orange} />
                   </span>
                   <span style={{
                     fontFamily: "var(--font-body)", fontSize: 15,
@@ -833,7 +840,7 @@ function PricingBuy() {
             <a href="#checkout"
               className="btn btn--orange btn--lg btn--full btn--pulse"
               style={{ fontSize: 18 }}>
-              <LockIcon size={16} color="#fff"/>
+              <LockIcon size={16} color="#fff" />
               Buy Now — $79
             </a>
             <div style={{
@@ -846,7 +853,7 @@ function PricingBuy() {
                   fontFamily: "var(--font-body)", fontSize: 12.5,
                   color: T.textMuted,
                 }}>
-                  <CheckIcon size={11} color={T.orange}/>
+                  <CheckIcon size={11} color={T.orange} />
                   {t}
                 </span>
               ))}
@@ -863,8 +870,8 @@ function PricingBuy() {
    Wire the form onSubmit to Mailchimp / Klaviyo / your API
 ════════════════════════════════════════════════════════ */
 function LeadMagnet() {
-  const [name, setName]       = useState("");
-  const [email, setEmail]     = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -941,7 +948,7 @@ function LeadMagnet() {
                 display: "flex", alignItems: "center", justifyContent: "center",
                 flexShrink: 0,
               }}>
-                <DownloadIcon size={24} color={T.gold}/>
+                <DownloadIcon size={24} color={T.gold} />
               </div>
               <div>
                 <div style={{
@@ -980,7 +987,7 @@ function LeadMagnet() {
                     display: "flex", alignItems: "center", justifyContent: "center",
                     margin: "0 auto 16px",
                   }}>
-                    <CheckIcon size={24} color="#22c55e"/>
+                    <CheckIcon size={24} color="#22c55e" />
                   </div>
                   <h3 style={{
                     fontFamily: "var(--font-display)", fontWeight: 900,
@@ -999,7 +1006,7 @@ function LeadMagnet() {
                   <div style={{ marginTop: 24 }}>
                     <a href="#buy" className="btn btn--orange">
                       Get the Full Workbook — $79
-                      <ArrowRight size={14} color="#fff"/>
+                      <ArrowRight size={14} color="#fff" />
                     </a>
                   </div>
                 </div>
@@ -1033,7 +1040,7 @@ function LeadMagnet() {
                           transition: "border-color var(--ease-fast)",
                         }}
                         onFocus={e => e.target.style.borderColor = T.gold}
-                        onBlur={e  => e.target.style.borderColor = T.borderDark}
+                        onBlur={e => e.target.style.borderColor = T.borderDark}
                       />
                     </div>
                     <div>
@@ -1060,7 +1067,7 @@ function LeadMagnet() {
                           transition: "border-color var(--ease-fast)",
                         }}
                         onFocus={e => e.target.style.borderColor = T.gold}
-                        onBlur={e  => e.target.style.borderColor = T.borderDark}
+                        onBlur={e => e.target.style.borderColor = T.borderDark}
                       />
                     </div>
                   </div>
@@ -1071,7 +1078,7 @@ function LeadMagnet() {
                     className="btn btn--gold btn--full btn--lg"
                     style={{ opacity: loading ? 0.7 : 1 }}
                   >
-                    <DownloadIcon size={16} color={T.navy}/>
+                    <DownloadIcon size={16} color={T.navy} />
                     {loading ? "Sending…" : "Send Me the Free Checklist"}
                   </button>
 
@@ -1099,15 +1106,15 @@ function LeadMagnet() {
 function Testimonials() {
   const testimonials = [
     {
-      quote:    "The tabletop drills and case studies were better than anything I've seen in my 20 years in the field.",
-      name:     "Larry M.",
-      role:     "Lead Trainer, Texas",
+      quote: "The tabletop drills and case studies were better than anything I've seen in my 20 years in the field.",
+      name: "Larry M.",
+      role: "Lead Trainer, Texas",
       initials: "LM",
     },
     {
-      quote:    "Finally a training that actually shows you how to teach — not just what to say. I feel confident now to train anyone.",
-      name:     "Angela D.",
-      role:     "CDL Fuel Driver, Missouri",
+      quote: "Finally a training that actually shows you how to teach — not just what to say. I feel confident now to train anyone.",
+      name: "Angela D.",
+      role: "CDL Fuel Driver, Missouri",
       initials: "AD",
     },
   ];
@@ -1140,10 +1147,10 @@ function Testimonials() {
               position: "relative", overflow: "hidden",
             }}>
               <div style={{ position: "absolute", top: 12, right: 20, opacity: 0.1 }}>
-                <QuoteIcon size={56} color={T.orange}/>
+                <QuoteIcon size={56} color={T.orange} />
               </div>
               <div style={{ display: "flex", gap: 3, marginBottom: 18 }}>
-                {[...Array(5)].map((_, i) => <StarIcon key={i} size={14} color={T.orange}/>)}
+                {[...Array(5)].map((_, i) => <StarIcon key={i} size={14} color={T.orange} />)}
               </div>
               <blockquote style={{
                 fontFamily: "var(--font-body)", fontSize: 16,
@@ -1200,7 +1207,7 @@ function FinalCTA() {
           linear-gradient(90deg, rgba(232,97,10,0.05) 1px, transparent 1px)
         `,
         backgroundSize: "48px 48px",
-      }}/>
+      }} />
       <div className="container" style={{
         position: "relative", zIndex: 1, textAlign: "center",
       }}>
@@ -1212,7 +1219,7 @@ function FinalCTA() {
           fontSize: "clamp(32px, 4.5vw, 60px)", color: "#fff",
           textTransform: "uppercase", lineHeight: 1.05, marginBottom: 20,
         }}>
-          The Knowledge That Keeps You<br/>
+          The Knowledge That Keeps You<br />
           <span style={{ color: T.orange }}>Safe on Every Run.</span>
         </h2>
         <p style={{
@@ -1227,11 +1234,11 @@ function FinalCTA() {
           display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap",
         }}>
           <a href="#checkout" className="btn btn--orange btn--lg btn--pulse">
-            <LockIcon size={15} color="#fff"/>
+            <LockIcon size={15} color="#fff" />
             Buy Now — $79
           </a>
           <a href="#free-checklist" className="btn btn--lg btn--outline-white">
-            <DownloadIcon size={15} color="#fff"/>
+            <DownloadIcon size={15} color="#fff" />
             Get Free Checklist First
           </a>
         </div>
@@ -1252,18 +1259,18 @@ function FinalCTA() {
 export default function ForDriversPage() {
   return (
     <>
-     
+
       <main>
-        <Hero/>
-        <WhatsInside/>
-        <ProTip/>
-        <WhoIsThisFor/>
-        <PricingBuy/>
-        <LeadMagnet/>
-        <Testimonials/>
-        <FinalCTA/>
+        <Hero />
+        <WhatsInside />
+        <ProTip />
+        <WhoIsThisFor />
+        <PricingBuy />
+        <LeadMagnet />
+        <Testimonials />
+        <FinalCTA />
       </main>
-    
+
 
       {/* Page-scoped responsive layout — no tokens */}
       <style jsx>{`

@@ -322,7 +322,7 @@ export default function Footer() {
                 onMouseEnter={e => e.currentTarget.style.color = "#fff"}
                 onMouseLeave={e => e.currentTarget.style.color = T.textDim}>
                 <PhoneIcon size={14} color={T.gold}/>
-                +1 (800) 555-0199
+                405.239.8853
               </a>
               <a href="mailto:info@fuelhaulingtraining.com" style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-body)", fontSize: 13.5, color: T.textDim, transition: "color var(--ease-fast)" }}
                 onMouseEnter={e => e.currentTarget.style.color = "#fff"}
@@ -401,9 +401,9 @@ export default function Footer() {
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
             {[
-              { label: "fuelhaulingtraining.com", href: "https://fuelhaulingtraining.com" },
-              { label: "vanguardsbconsultants.com", href: "https://vanguardsbconsultants.com" },
-              { label: "Privacy Policy", href: "/privacy" },
+              // { label: "fuelhaulingtraining.com", href: "https://fuelhaulingtraining.com" },
+              // { label: "vanguardsbconsultants.com", href: "https://vanguardsbconsultants.com" },
+              // { label: "Privacy Policy", href: "/privacy" },
               { label: "Contact", href: "/contact" },
             ].map(item => (
               <a key={item.label} href={item.href} style={{ fontFamily: "var(--font-body)", fontSize: 12.5, color: "rgba(255,255,255,0.35)", transition: "color var(--ease-fast)" }}

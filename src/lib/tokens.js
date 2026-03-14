@@ -22,6 +22,7 @@ const T = {
   orange:        "#C8A84B",
   orangeHover:   "#C8A84B",
   gold:          "#C8A84B",
+  redd: '#b31942',
 
   /* ── Surfaces ───────────────────── */
   surface:       "#F4F1EB",

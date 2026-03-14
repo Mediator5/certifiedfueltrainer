@@ -226,7 +226,7 @@ export default function Header() {
               onMouseEnter={e => e.currentTarget.style.color = T.textWhite}
               onMouseLeave={e => e.currentTarget.style.color = T.textDim}>
               <PhoneIcon size={13} color={T.gold}/>
-              +1 (800) 555-0199
+              405.239.8853
             </a>
 
             <div className="divider-v"/>

@@ -20,6 +20,8 @@
   --color-orange:        #C8A84B;
   --color-orange-hover:  #C8A84B;
   --color-gold:          #C8A84B;
+  --color-redd:          #b31942;
+
 
   /* Surfaces */
   --color-surface:       #F4F1EB;
@@ -161,7 +163,7 @@ button {
 }
 
 .btn--orange {
-  background: var(--color-orange);
+  background: var(--color-redd);
   color: #fff;
 }
 .btn--orange:hover {
