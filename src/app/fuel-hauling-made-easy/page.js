@@ -837,7 +837,7 @@ function PricingBuy() {
               href="https://buy.stripe.com/your-link"
               ─────────────────────────────────────────────────────
             */}
-            <a href="#checkout"
+            <a href="https://vanguardbusinessconsultantsllc.com/product/fuel-hauling-made-easy-the-complete-training-leadership-guide/"
               className="btn btn--orange btn--lg btn--full btn--pulse"
               style={{ fontSize: 18 }}>
               <LockIcon size={16} color="#fff" />

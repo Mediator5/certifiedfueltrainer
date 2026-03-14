@@ -1006,7 +1006,7 @@ function Pricing() {
                 href="https://buy.stripe.com/your-workshop-link"
                 ────────────────────────────────────────────────────
               */}
-              <a href="/certified-to-lead-workshop#register"
+              <a href="https://vanguardbusinessconsultantsllc.com/product/certified-to-lead-advanced-fuel-trainer-workshop/"
                 className="btn btn--orange btn--lg btn--full btn--pulse"
                 style={{ fontSize: 18, marginBottom: 12 }}>
                 <LockIcon size={16} color="#fff"/>

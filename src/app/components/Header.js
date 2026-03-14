@@ -10,22 +10,26 @@
 "use client"
 import { useState, useEffect } from "react";
 import T from "@/lib/tokens";
+import Image from "next/image";
 
 /* ═══════════════════════════════════════════════════════
    NAV CONFIG
 ═══════════════════════════════════════════════════════ */
 const NAV_LINKS = [
-  { label: "Home",         href: "/" },
-  { label: "For Drivers",  href: "/fuel-hauling-made-easy",
+  { label: "Home", href: "/" },
+  {
+    label: "For Drivers", href: "/fuel-hauling-made-easy",
     // children: ["Fuel Hauling Made Easy", "Buy the Workbook", "Free Checklist Download"] 
-},
-  { label: "For Trainers", href: "/certified-to-lead-workshop",
+  },
+  {
+    label: "For Trainers", href: "/certified-to-lead-workshop",
     // children: ["Certified to Lead™ Workshop", "Certification Details", "Register Now"] 
-},
-  { label: "Resources",    href: "/resources",
+  },
+  {
+    label: "Resources", href: "/resources",
     // children: ["Blog & Articles", "Free Downloads", "Newsletter"] 
-},
-  { label: "Contact",      href: "/contact" },
+  },
+  { label: "Contact", href: "/contact" },
 ];
 
 /* ═══════════════════════════════════════════════════════
@@ -34,58 +38,58 @@ const NAV_LINKS = [
 const MailIcon = ({ size = 14, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="4" width="20" height="16" rx="2"/>
-    <polyline points="22,6 12,13 2,6"/>
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <polyline points="22,6 12,13 2,6" />
   </svg>
 );
 const PhoneIcon = ({ size = 14, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
   </svg>
 );
 const UserIcon = ({ size = 12, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-    <circle cx="12" cy="7" r="4"/>
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
   </svg>
 );
 const FbIcon = ({ size = 13 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
   </svg>
 );
 const TwIcon = ({ size = 13 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.851L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.851L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 );
 const LiIcon = ({ size = 13 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
-    <circle cx="4" cy="4" r="2"/>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+    <circle cx="4" cy="4" r="2" />
   </svg>
 );
 const MenuIcon = ({ size = 20 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-    <line x1="3" y1="6"  x2="21" y2="6"/>
-    <line x1="3" y1="12" x2="21" y2="12"/>
-    <line x1="3" y1="18" x2="21" y2="18"/>
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="18" x2="21" y2="18" />
   </svg>
 );
 const CloseIcon = ({ size = 20 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-    <line x1="18" y1="6"  x2="6"  y2="18"/>
-    <line x1="6"  y1="6"  x2="18" y2="18"/>
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
   </svg>
 );
 const ChevronDown = ({ size = 12 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="6 9 12 15 18 9"/>
+    <polyline points="6 9 12 15 18 9" />
   </svg>
 );
 
@@ -150,7 +154,7 @@ const NavItem = ({ item, active }) => {
         {item.label}
         {has && (
           <span style={{ opacity: 0.5, display: "inline-flex", transition: "transform 200ms", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}>
-            <ChevronDown size={11}/>
+            <ChevronDown size={11} />
           </span>
         )}
       </a>
@@ -196,8 +200,8 @@ const NavItem = ({ item, active }) => {
 ═══════════════════════════════════════════════════════ */
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [expanded, setExpanded]     = useState(null);
-  const [scrolled, setScrolled]     = useState(false);
+  const [expanded, setExpanded] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 8);
@@ -215,9 +219,9 @@ export default function Header() {
 
           {/* Social icons */}
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <SocialBtn label="Facebook"><FbIcon size={13}/></SocialBtn>
-            <SocialBtn label="Twitter"><TwIcon size={13}/></SocialBtn>
-            <SocialBtn label="LinkedIn"><LiIcon size={13}/></SocialBtn>
+            <SocialBtn label="Facebook"><FbIcon size={13} /></SocialBtn>
+            <SocialBtn label="Twitter"><TwIcon size={13} /></SocialBtn>
+            <SocialBtn label="LinkedIn"><LiIcon size={13} /></SocialBtn>
           </div>
 
           {/* Contact info + login */}
@@ -225,20 +229,20 @@ export default function Header() {
             <a href="tel:+18005550199" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textDim, fontSize: 12.5, fontFamily: "var(--font-body)", transition: "color var(--ease-fast)" }}
               onMouseEnter={e => e.currentTarget.style.color = T.textWhite}
               onMouseLeave={e => e.currentTarget.style.color = T.textDim}>
-              <PhoneIcon size={13} color={T.gold}/>
+              <PhoneIcon size={13} color={T.gold} />
               405.239.8853
             </a>
 
-            <div className="divider-v"/>
+            <div className="divider-v" />
 
             <a href="mailto:info@fuelhaulingtraining.com" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textDim, fontSize: 12.5, fontFamily: "var(--font-body)", transition: "color var(--ease-fast)" }}
               onMouseEnter={e => e.currentTarget.style.color = T.textWhite}
               onMouseLeave={e => e.currentTarget.style.color = T.textDim}>
-              <MailIcon size={13} color={T.gold}/>
+              <MailIcon size={13} color={T.gold} />
               info@fuelhaulingtraining.com
             </a>
 
-            <div className="divider-v"/>
+            <div className="divider-v" />
 
             <a href="/contact" className="btn btn--sm" style={{
               background: "rgba(255,255,255,0.07)",
@@ -247,7 +251,7 @@ export default function Header() {
             }}
               onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.13)"; e.currentTarget.style.color = T.textWhite; }}
               onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.07)"; e.currentTarget.style.color = T.textDim; }}>
-              <UserIcon size={12}/>
+              <UserIcon size={12} />
               contact
             </a>
           </div>
@@ -268,7 +272,7 @@ export default function Header() {
 
           {/* Logo */}
           <a href="/" style={{ display: "flex", alignItems: "center", gap: 11, flexShrink: 0 }}>
-            <div style={{
+            {/* <div style={{
               width: 44, height: 44, background: T.orange, borderRadius: "var(--radius-sm)",
               display: "flex", alignItems: "center", justifyContent: "center",
               position: "relative", overflow: "hidden", flexShrink: 0,
@@ -286,14 +290,20 @@ export default function Header() {
               <div className="text-label text-gold" style={{ marginTop: 2 }}>
                 Training · fuelhaulingtraining.com
               </div>
-            </div>
+            </div> */}
+            <Image
+              src="/certified_to_lead_logo.png"
+              alt="Profile picture"
+              width={60}
+              height={60}
+            />
           </a>
 
           {/* Desktop nav */}
           <nav style={{ display: "flex", alignItems: "center", gap: 2, flex: 1, justifyContent: "center" }}
             className="fht-desktop-nav">
             {NAV_LINKS.map(item => (
-              <NavItem key={item.label} item={item} active={item.label === "Home"}/>
+              <NavItem key={item.label} item={item} active={item.label === "Home"} />
             ))}
           </nav>
 
@@ -302,7 +312,7 @@ export default function Header() {
             className="btn btn--orange btn--pulse"
             style={{ flexShrink: 0 }}>
             <svg width="13" height="16" viewBox="0 0 13 16" fill="white">
-              <path d="M6.5 0C6.5 0 1 5.5 1 10a5.5 5.5 0 0 0 11 0C12 5.5 6.5 0 6.5 0z"/>
+              <path d="M6.5 0C6.5 0 1 5.5 1 10a5.5 5.5 0 0 0 11 0C12 5.5 6.5 0 6.5 0z" />
             </svg>
             Claim Your Spot
           </a>
@@ -313,7 +323,7 @@ export default function Header() {
             className="fht-hamburger"
             style={{ display: "none", background: "none", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "var(--radius-sm)", padding: "7px 9px", color: T.textWhite, flexShrink: 0 }}
             aria-label="Toggle menu">
-            {mobileOpen ? <CloseIcon size={20}/> : <MenuIcon size={20}/>}
+            {mobileOpen ? <CloseIcon size={20} /> : <MenuIcon size={20} />}
           </button>
         </div>
       </header>
@@ -336,7 +346,7 @@ export default function Header() {
                 {item.label}
                 {item.children && (
                   <span style={{ display: "inline-flex", transition: "transform 200ms", transform: expanded === item.label ? "rotate(180deg)" : "rotate(0deg)" }}>
-                    <ChevronDown size={14}/>
+                    <ChevronDown size={14} />
                   </span>
                 )}
               </button>
