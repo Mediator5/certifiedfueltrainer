@@ -23,6 +23,7 @@
 
 import { useState, useEffect } from "react";
 import T from "@/lib/tokens";
+import ImageFade from "./components/Imagefade";
 
 /* ════════════════════════════════════════════════════════
    ICONS
@@ -30,111 +31,111 @@ import T from "@/lib/tokens";
 const CheckIcon = ({ size = 16, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="20 6 9 17 4 12"/>
+    <polyline points="20 6 9 17 4 12" />
   </svg>
 );
 const ArrowRight = ({ size = 15, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="5" y1="12" x2="19" y2="12"/>
-    <polyline points="12 5 19 12 12 19"/>
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12 5 19 12 12 19" />
   </svg>
 );
 const StarIcon = ({ size = 15, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke="none">
-    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
   </svg>
 );
 const CalendarIcon = ({ size = 18, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-    <line x1="16" y1="2" x2="16" y2="6"/>
-    <line x1="8" y1="2" x2="8" y2="6"/>
-    <line x1="3" y1="10" x2="21" y2="10"/>
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+    <line x1="16" y1="2" x2="16" y2="6" />
+    <line x1="8" y1="2" x2="8" y2="6" />
+    <line x1="3" y1="10" x2="21" y2="10" />
   </svg>
 );
 const MapPinIcon = ({ size = 18, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-    <circle cx="12" cy="10" r="3"/>
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+    <circle cx="12" cy="10" r="3" />
   </svg>
 );
 const ClockIcon = ({ size = 18, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"/>
-    <polyline points="12 6 12 12 16 14"/>
+    <circle cx="12" cy="12" r="10" />
+    <polyline points="12 6 12 12 16 14" />
   </svg>
 );
 const UsersIcon = ({ size = 18, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-    <circle cx="9" cy="7" r="4"/>
-    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
   </svg>
 );
 const ShieldIcon = ({ size = 32, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
   </svg>
 );
 const AwardIcon = ({ size = 32, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="8" r="6"/>
-    <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+    <circle cx="12" cy="8" r="6" />
+    <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
   </svg>
 );
 const BookOpenIcon = ({ size = 32, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
   </svg>
 );
 const ClipboardIcon = ({ size = 32, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+    <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
   </svg>
 );
 const FireIcon = ({ size = 32, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
   </svg>
 );
 const AlertIcon = ({ size = 32, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-    <line x1="12" y1="9" x2="12" y2="13"/>
-    <line x1="12" y1="17" x2="12.01" y2="17"/>
+    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+    <line x1="12" y1="9" x2="12" y2="13" />
+    <line x1="12" y1="17" x2="12.01" y2="17" />
   </svg>
 );
 const LockIcon = ({ size = 15, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
   </svg>
 );
 const ChevronDown = ({ size = 18, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
     stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="6 9 12 15 18 9"/>
+    <polyline points="6 9 12 15 18 9" />
   </svg>
 );
 const QuoteIcon = ({ size = 56, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke="none">
-    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
-    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
   </svg>
 );
 
@@ -143,8 +144,8 @@ const QuoteIcon = ({ size = 56, color = "currentColor" }) => (
 ════════════════════════════════════════════════════════ */
 // Set your actual early bird deadline here
 const EARLY_BIRD_DEADLINE = new Date("2026-07-15T23:59:59");
-const WORKSHOP_DATE       = "August 2026"; // update with exact date
-const EARLY_BIRD_DATE     = "July 15, 2026";
+const WORKSHOP_DATE = "August 2026"; // update with exact date
+const EARLY_BIRD_DATE = "July 15, 2026";
 const CANCELLATION_POLICY = "Full refund up to 30 days before the event.";
 
 function CountdownTimer() {
@@ -155,8 +156,8 @@ function CountdownTimer() {
       const diff = EARLY_BIRD_DEADLINE - new Date();
       if (diff <= 0) return setTimeLeft(null);
       setTimeLeft({
-        days:    Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours:   Math.floor((diff / (1000 * 60 * 60)) % 24),
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((diff / (1000 * 60)) % 60),
         seconds: Math.floor((diff / 1000) % 60),
       });
@@ -169,8 +170,8 @@ function CountdownTimer() {
   if (!timeLeft) return null;
 
   const units = [
-    { label: "Days",    value: timeLeft.days },
-    { label: "Hours",   value: timeLeft.hours },
+    { label: "Days", value: timeLeft.days },
+    { label: "Hours", value: timeLeft.hours },
     { label: "Minutes", value: timeLeft.minutes },
     { label: "Seconds", value: timeLeft.seconds },
   ];
@@ -245,14 +246,14 @@ function Hero() {
           linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px)
         `,
         backgroundSize: "64px 64px",
-      }}/>
+      }} />
       {/* Gold glow bottom right */}
       <div style={{
         position: "absolute", bottom: -120, right: -80, zIndex: 0,
         width: 560, height: 560, borderRadius: "50%",
         background: "radial-gradient(circle, rgba(200,168,75,0.08) 0%, transparent 70%)",
         pointerEvents: "none",
-      }}/>
+      }} />
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
 
@@ -297,9 +298,9 @@ function Hero() {
           textTransform: "uppercase", letterSpacing: "0.01em",
           marginBottom: 24, maxWidth: 820,
         }}>
-          Become a certified fuel trainer<br/>
-          in just <span style={{ color: T.gold }}>one day.</span><br/>
-          <span style={{ color: T.orange }}>Build confidence.</span><br/>
+          Become a certified fuel trainer<br />
+          in just <span style={{ color: T.gold }}>one day.</span><br />
+          <span style={{ color: T.orange }}>Build confidence.</span><br />
           Prevent mistakes. Protect lives.
         </h1>
 
@@ -309,10 +310,10 @@ function Hero() {
           marginBottom: 36,
         }}>
           {[
-            { icon: <MapPinIcon size={15} color={T.gold}/>,     text: "MetroTech — Oklahoma City, OK" },
-            { icon: <CalendarIcon size={15} color={T.gold}/>,   text: `${WORKSHOP_DATE}` },
-            { icon: <ClockIcon size={15} color={T.gold}/>,      text: "8:00 AM – 5:00 PM" },
-            { icon: <UsersIcon size={15} color={T.orange}/>,    text: "Limited to 20 Participants", highlight: true },
+            { icon: <MapPinIcon size={15} color={T.gold} />, text: "MetroTech — Oklahoma City, OK" },
+            { icon: <CalendarIcon size={15} color={T.gold} />, text: `${WORKSHOP_DATE}` },
+            { icon: <ClockIcon size={15} color={T.gold} />, text: "8:00 AM – 5:00 PM" },
+            { icon: <UsersIcon size={15} color={T.orange} />, text: "Limited to 20 Participants", highlight: true },
           ].map(item => (
             <span key={item.text} style={{
               display: "inline-flex", alignItems: "center", gap: 7,
@@ -328,20 +329,20 @@ function Hero() {
 
         {/* Countdown */}
         <div style={{ marginBottom: 36, maxWidth: 680 }}>
-          <CountdownTimer/>
+          <CountdownTimer />
         </div>
 
         {/* CTAs */}
         <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
           <a href="#register" className="btn btn--orange btn--lg btn--pulse">
             <svg width="14" height="17" viewBox="0 0 13 16" fill="white">
-              <path d="M6.5 0C6.5 0 1 5.5 1 10a5.5 5.5 0 0 0 11 0C12 5.5 6.5 0 6.5 0z"/>
+              <path d="M6.5 0C6.5 0 1 5.5 1 10a5.5 5.5 0 0 0 11 0C12 5.5 6.5 0 6.5 0z" />
             </svg>
             Claim Your Spot Now
           </a>
           <a href="#whats-included" className="btn btn--lg btn--outline-white">
             See What's Included
-            <ArrowRight size={15} color="#fff"/>
+            <ArrowRight size={15} color="#fff" />
           </a>
         </div>
 
@@ -350,7 +351,7 @@ function Hero() {
           marginTop: 16, fontFamily: "var(--font-body)", fontSize: 13.5,
           color: T.orange, display: "flex", alignItems: "center", gap: 6,
         }}>
-          <UsersIcon size={14} color={T.orange}/>
+          <UsersIcon size={14} color={T.orange} />
           Limited to 20 Participants — First Come, First Serve
         </p>
       </div>
@@ -360,7 +361,7 @@ function Hero() {
         position: "absolute", bottom: -2, left: 0, right: 0, zIndex: 2,
         height: 60, background: T.surface,
         clipPath: "polygon(0 100%, 100% 0, 100% 100%)",
-      }}/>
+      }} />
     </section>
   );
 }
@@ -371,31 +372,31 @@ function Hero() {
 function ValueProps() {
   const items = [
     {
-      icon: <UsersIcon size={28} color={T.gold}/>,
+      icon: <UsersIcon size={28} color={T.gold} />,
       problem: "Unsure how to coach without coming across as harsh?",
       solution: "Professional Coaching",
       body: "How to coach new drivers while maintaining professional standards — keeping performance high and relationships intact.",
     },
     {
-      icon: <AlertIcon size={28} color={T.gold}/>,
+      icon: <AlertIcon size={28} color={T.gold} />,
       problem: "Worried your drivers might cross-dump a load?",
       solution: "Contamination Prevention",
       body: "Advanced strategies to prevent your drivers from cross-dumping and cross-contaminating loads — the incidents that cost careers and companies.",
     },
     {
-      icon: <FireIcon size={28} color={T.gold}/>,
+      icon: <FireIcon size={28} color={T.gold} />,
       problem: "Not confident running an emergency drill?",
       solution: "Emergency Preparedness",
       body: "How to run effective emergency drills for spills, fires, tampering, and fuel spray incidents so your team is never caught unprepared.",
     },
     {
-      icon: <ClipboardIcon size={28} color={T.gold}/>,
+      icon: <ClipboardIcon size={28} color={T.gold} />,
       problem: "Don't know when a driver is truly ready?",
       solution: "Assessment Tools",
       body: "How to use and customize the Fuel Truck Driver Readiness Form to make confident, defensible go/no-go decisions.",
     },
     {
-      icon: <ShieldIcon size={28} color={T.gold}/>,
+      icon: <ShieldIcon size={28} color={T.gold} />,
       problem: "Dreading the day your driver faces a real hazard?",
       solution: "Hazard Response",
       body: "Advanced strategies for teaching drivers exactly how to respond to hazardous incidents — before they happen on the road.",
@@ -530,7 +531,7 @@ function WhoShouldAttend() {
                     display: "flex", alignItems: "center", justifyContent: "center",
                     flexShrink: 0, marginTop: 1,
                   }}>
-                    <CheckIcon size={13} color={T.gold}/>
+                    <CheckIcon size={13} color={T.gold} />
                   </div>
                   <span style={{
                     fontFamily: "var(--font-body)", fontSize: 16,
@@ -584,11 +585,11 @@ function WhoShouldAttend() {
             </div>
 
             {[
-              { icon: <CalendarIcon size={16} color={T.gold}/>,  label: "Date",      value: WORKSHOP_DATE },
-              { icon: <MapPinIcon size={16} color={T.gold}/>,    label: "Location",  value: "MetroTech, Oklahoma City, OK" },
-              { icon: <ClockIcon size={16} color={T.gold}/>,     label: "Time",      value: "8:00 AM – 5:00 PM" },
-              { icon: <UsersIcon size={16} color={T.orange}/>,   label: "Seats",     value: "Limited to 20 Participants" },
-              { icon: <AwardIcon size={16} color={T.gold}/>,     label: "Cert",      value: "3-Year Certification" },
+              { icon: <CalendarIcon size={16} color={T.gold} />, label: "Date", value: WORKSHOP_DATE },
+              { icon: <MapPinIcon size={16} color={T.gold} />, label: "Location", value: "MetroTech, Oklahoma City, OK" },
+              { icon: <ClockIcon size={16} color={T.gold} />, label: "Time", value: "8:00 AM – 5:00 PM" },
+              { icon: <UsersIcon size={16} color={T.orange} />, label: "Seats", value: "Limited to 20 Participants" },
+              { icon: <AwardIcon size={16} color={T.gold} />, label: "Cert", value: "3-Year Certification" },
             ].map((row, i) => (
               <div key={row.label} style={{
                 display: "flex", alignItems: "center",
@@ -618,7 +619,7 @@ function WhoShouldAttend() {
               className="btn btn--orange btn--full"
               style={{ marginTop: 28 }}>
               Claim Your Spot Now
-              <ArrowRight size={14} color="#fff"/>
+              <ArrowRight size={14} color="#fff" />
             </a>
           </div>
         </div>
@@ -633,27 +634,27 @@ function WhoShouldAttend() {
 function WhatsIncluded() {
   const included = [
     {
-      icon: <BookOpenIcon size={26} color={T.orange}/>,
+      icon: <BookOpenIcon size={26} color={T.orange} />,
       title: "Full-Day Live Workshop",
       body: "Classroom-style instruction at MetroTech, Oklahoma City. Hands-on, interactive — not a lecture.",
     },
     {
-      icon: <ClipboardIcon size={26} color={T.orange}/>,
+      icon: <ClipboardIcon size={26} color={T.orange} />,
       title: "Certified to Lead™ Handbook",
       body: "Printed handbook and evaluation checklists included. Yours to keep and use on the job.",
     },
     {
-      icon: <AlertIcon size={26} color={T.orange}/>,
+      icon: <AlertIcon size={26} color={T.orange} />,
       title: "Case Studies & Tabletop Drills",
       body: "Real-world coaching scenarios you work through as a group. The most valuable part of the day.",
     },
     {
-      icon: <AwardIcon size={26} color={T.orange}/>,
+      icon: <AwardIcon size={26} color={T.orange} />,
       title: "Online Certification Exam",
       body: "Complete the exam after the workshop at your own pace. Pass and earn your official certificate.",
     },
     {
-      icon: <ShieldIcon size={26} color={T.orange}/>,
+      icon: <ShieldIcon size={26} color={T.orange} />,
       title: "Official Certificate of Completion",
       body: "3-year certification that meets DOT requirements and is recognized by major U.S. fuel transport insurers.",
     },
@@ -783,7 +784,7 @@ function CertDetails() {
                     display: "flex", alignItems: "center", justifyContent: "center",
                     flexShrink: 0, marginTop: 1,
                   }}>
-                    <CheckIcon size={12} color={T.gold}/>
+                    <CheckIcon size={12} color={T.gold} />
                   </div>
                   <span style={{
                     fontFamily: "var(--font-body)", fontSize: 15.5,
@@ -807,7 +808,7 @@ function CertDetails() {
             overflow: "hidden",
           }}>
             {/* Corner ornaments */}
-            {["top-left","top-right","bottom-left","bottom-right"].map(pos => (
+            {["top-left", "top-right", "bottom-left", "bottom-right"].map(pos => (
               <div key={pos} style={{
                 position: "absolute",
                 top: pos.includes("top") ? 12 : "auto",
@@ -820,7 +821,7 @@ function CertDetails() {
                 borderLeft: pos.includes("left") ? `2px solid ${T.gold}` : "none",
                 borderRight: pos.includes("right") ? `2px solid ${T.gold}` : "none",
                 opacity: 0.5,
-              }}/>
+              }} />
             ))}
 
             <div style={{
@@ -830,7 +831,7 @@ function CertDetails() {
               display: "flex", alignItems: "center", justifyContent: "center",
               margin: "0 auto 20px",
             }}>
-              <AwardIcon size={30} color={T.gold}/>
+              <AwardIcon size={30} color={T.gold} />
             </div>
 
             <div style={{
@@ -853,14 +854,14 @@ function CertDetails() {
               fontFamily: "var(--font-body)", fontSize: 13.5,
               color: T.textDim, marginBottom: 24, lineHeight: 1.5,
             }}>
-              Fuel Driver Trainer Certification<br/>
+              Fuel Driver Trainer Certification<br />
               Vanguard Business Consultants, LLC
             </div>
 
             <div style={{
               width: "60%", height: 1, margin: "0 auto 20px",
               background: `linear-gradient(90deg, transparent, ${T.gold}, transparent)`,
-            }}/>
+            }} />
 
             <div style={{
               display: "inline-flex", alignItems: "center", gap: 8,
@@ -869,7 +870,7 @@ function CertDetails() {
               borderRadius: "var(--radius-sm)",
               padding: "6px 16px",
             }}>
-              <ShieldIcon size={14} color={T.gold}/>
+              <ShieldIcon size={14} color={T.gold} />
               <span style={{
                 fontFamily: "var(--font-display)", fontWeight: 700,
                 fontSize: 11, letterSpacing: "0.12em",
@@ -985,7 +986,7 @@ function Pricing() {
                 ].map(item => (
                   <li key={item} style={{ display: "flex", gap: 10 }}>
                     <span style={{ marginTop: 2, flexShrink: 0 }}>
-                      <CheckIcon size={14} color={T.orange}/>
+                      <CheckIcon size={14} color={T.orange} />
                     </span>
                     <span style={{
                       fontFamily: "var(--font-body)", fontSize: 15,
@@ -1009,7 +1010,7 @@ function Pricing() {
               <a href="/certified-to-lead-workshop#register"
                 className="btn btn--orange btn--lg btn--full btn--pulse"
                 style={{ fontSize: 18, marginBottom: 12 }}>
-                <LockIcon size={16} color="#fff"/>
+                <LockIcon size={16} color="#fff" />
                 Register Now at Early Bird Rate — $895
               </a>
               <p style={{
@@ -1025,7 +1026,7 @@ function Pricing() {
 
           {/* Countdown below card */}
           <div style={{ marginTop: 24 }}>
-            <CountdownTimer/>
+            <CountdownTimer />
           </div>
         </div>
       </div>
@@ -1039,15 +1040,15 @@ function Pricing() {
 function Testimonials() {
   const testimonials = [
     {
-      quote:    "The tabletop drills and case studies were better than anything I've seen in my 20 years in the field.",
-      name:     "Larry M.",
-      role:     "Lead Trainer, Texas",
+      quote: "The tabletop drills and case studies were better than anything I've seen in my 20 years in the field.",
+      name: "Larry M.",
+      role: "Lead Trainer, Texas",
       initials: "LM",
     },
     {
-      quote:    "Finally a training that actually shows you how to teach — not just what to say. I feel confident now to train anyone.",
-      name:     "Angela D.",
-      role:     "CDL Fuel Driver, Missouri",
+      quote: "Finally a training that actually shows you how to teach — not just what to say. I feel confident now to train anyone.",
+      name: "Angela D.",
+      role: "CDL Fuel Driver, Missouri",
       initials: "AD",
     },
   ];
@@ -1079,10 +1080,10 @@ function Testimonials() {
               position: "relative", overflow: "hidden",
             }}>
               <div style={{ position: "absolute", top: 12, right: 20, opacity: 0.1 }}>
-                <QuoteIcon size={56} color={T.gold}/>
+                <QuoteIcon size={56} color={T.gold} />
               </div>
               <div style={{ display: "flex", gap: 3, marginBottom: 18 }}>
-                {[...Array(5)].map((_, i) => <StarIcon key={i} size={14} color={T.gold}/>)}
+                {[...Array(5)].map((_, i) => <StarIcon key={i} size={14} color={T.gold} />)}
               </div>
               <blockquote style={{
                 fontFamily: "var(--font-body)", fontSize: 16,
@@ -1208,7 +1209,7 @@ function FAQ() {
                   display: "inline-flex",
                   color: open === i ? T.orange : T.textMuted,
                 }}>
-                  <ChevronDown size={20}/>
+                  <ChevronDown size={20} />
                 </span>
               </button>
 
@@ -1267,7 +1268,7 @@ function FinalCTA() {
           linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px)
         `,
         backgroundSize: "56px 56px",
-      }}/>
+      }} />
 
       <div className="container" style={{
         position: "relative", zIndex: 1, textAlign: "center",
@@ -1280,7 +1281,7 @@ function FinalCTA() {
           fontSize: "clamp(32px, 4.5vw, 62px)", color: "#fff",
           textTransform: "uppercase", lineHeight: 1.05, marginBottom: 20,
         }}>
-          20 Seats. One Day.<br/>
+          20 Seats. One Day.<br />
           <span style={{ color: T.orange }}>A Career-Changing Certification.</span>
         </h2>
         <p style={{
@@ -1293,7 +1294,7 @@ function FinalCTA() {
         </p>
 
         <div style={{ maxWidth: 480, margin: "0 auto 24px" }}>
-          <CountdownTimer/>
+          <CountdownTimer />
         </div>
 
         <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
@@ -1301,7 +1302,7 @@ function FinalCTA() {
             Replace href="#" with your registration URL when ready.
           */}
           <a href="/certified-to-lead-workshop#register" className="btn btn--orange btn--lg btn--pulse">
-            <LockIcon size={15} color="#fff"/>
+            <LockIcon size={15} color="#fff" />
             Register Now at Early Bird Rate — $895
           </a>
           <a href="/contact" className="btn btn--lg btn--outline-white">
@@ -1327,15 +1328,23 @@ function FinalCTA() {
 export default function ForTrainersPage() {
   return (
     <main>
-      <Hero/>
-      <ValueProps/>
-      <WhoShouldAttend/>
-      <WhatsIncluded/>
-      <CertDetails/>
-      <Pricing/>
-      <Testimonials/>
-      <FAQ/>
-      <FinalCTA/>
+      <Hero />
+      <ValueProps />
+      <WhoShouldAttend />
+      <WhatsIncluded />
+      <ImageFade 
+        height={520}
+        slides={[
+          { image: "/Certified to Lead - Truck Driver - BM - Linkedin Featured.png", alt: "Fuel tanker on highway" },
+          { image: "/Certified to Lead - Truck Driver - Linkedin Featured.png", alt: "Trainer at MetroTech" },
+          { image: "/Certified to Lead - Truck Driver - Linkedin Featured.png", alt: "Trainer at MetroTech" },
+        ]}
+      />
+      <CertDetails />
+      <Pricing />
+      <Testimonials />
+      <FAQ />
+      <FinalCTA />
 
       {/* Page-scoped responsive layout — no tokens */}
       <style jsx>{`
