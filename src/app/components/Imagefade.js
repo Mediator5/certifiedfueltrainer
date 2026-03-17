@@ -132,7 +132,7 @@ export default function ImageFade({
         width:       "100%",
         aspectRatio: aspectRatio,
         overflow:    "hidden",
-        backgroundColor:  '#f9f9f9',
+        backgroundColor:  T.navy,
         padding: '100px',
         
       }}
