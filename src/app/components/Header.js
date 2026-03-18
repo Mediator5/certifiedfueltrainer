@@ -291,12 +291,12 @@ export default function Header() {
                 Training · fuelhaulingtraining.com
               </div>
             </div> */}
-            <Image
+            {/* <Image
               src="/certified_to_lead_logo.png"
               alt="Profile picture"
               width={60}
               height={60}
-            />
+            /> */}
           </a>
 
           {/* Desktop nav */}
