@@ -2,12 +2,27 @@
  * page.jsx  —  /src/app/certified-to-lead-workshop/page.jsx
  *
  * Page 3: For Trainers — Certified to Lead™ Workshop
- * Rewritten with images throughout.
+ *
+ * RESPONSIVE FIXES APPLIED:
+ *  1. Hero — headline font clamp tightened for small screens.
+ *  2. ValueProps — 5th card inline `gridColumn + maxWidth` overrode media
+ *     queries. Moved to .value-card--last CSS class.
+ *  3. WhoShouldAttend — stat badge used right:-20 bottom:-20 which causes
+ *     horizontal scroll on mobile. Repositioned via .who-stat-badge class.
+ *  4. WhatsIncluded — floating badges used negative left/right offsets that
+ *     clip on mobile. Hidden via .included-badge at ≤600px.
+ *  5. CertDetails — certificate card overlay bottom:-24 crops when single
+ *     column. Added .cert-photo-wrap padding-bottom via CSS.
+ *  6. Pricing — 44px padding and 72px price font overflow on narrow screens.
+ *     Moved to .pricing-panel-* classes reduced at mobile breakpoint.
+ *  7. CountdownTimer — removed fixed minWidth from unit boxes; uses
+ *     .countdown-unit class that shrinks at ≤600px.
+ *  8. All inline gridTemplateColumns removed from layout divs so that
+ *     class-based media queries can actually override them.
  *
  * ── SWAP IMAGES ──────────────────────────────────────────────
- *  All placeholder images are defined in the IMAGES object
- *  at the top of this file. Replace each URL with your own
- *  image path when ready. Every image is labelled by section.
+ *  All placeholder images are defined in the IMAGES object at
+ *  the top of this file. Replace each URL with your own.
  * ─────────────────────────────────────────────────────────────
  *
  * No <Header/> or <Footer/> — handled by /src/app/layout.jsx
@@ -21,28 +36,15 @@ import T from "@/lib/tokens";
 import ImageFade from "./components/Imagefade";
 
 /* ════════════════════════════════════════════════════════
-   IMAGES — swap these URLs with your own when ready
+   IMAGES
 ════════════════════════════════════════════════════════ */
 const IMAGES = {
-  // Hero background — wide landscape of a training room or industrial facility
-  // hero: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80",
   hero: "/Certified to Lead - Truck Driver.png",
-
-  // Who Should Attend — trainer standing in front of a group
   trainerGroup: "/Certified to Lead - Truck Driver - BM - Linkedin Featured.png",
-
-  // What's Included — hands-on workshop / classroom session
   workshop: "https://vanguardbusinessconsultantsllc.com/wp-content/uploads/2025/05/gettyimages-481427531-612x612-1.webp",
-
-  // Certification section — professional receiving certificate / handshake
   certification: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80",
-
-  // Testimonial avatars — set to null to show initials placeholder
-  // Swap with "/headshots/larry-m.jpg" when ready
   avatarLarry: null,
   avatarAngela: null,
-
-  // Gallery strip — 3 images showing field/training context
   gallery1: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=700&q=80",
   gallery2: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=700&q=80",
   gallery3: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80",
@@ -172,6 +174,8 @@ const QuoteIcon = ({ size = 56, color = "currentColor" }) => (
 
 /* ════════════════════════════════════════════════════════
    COUNTDOWN TIMER
+   FIX: Removed hardcoded minWidth:52 from unit boxes — causes
+   horizontal scroll on small phones. Now a CSS class.
 ════════════════════════════════════════════════════════ */
 function CountdownTimer() {
   const [timeLeft, setTimeLeft] = useState(null);
@@ -195,7 +199,7 @@ function CountdownTimer() {
   if (!timeLeft) return null;
 
   return (
-    <div style={{
+    <div className="countdown-wrap" style={{
       background: "rgba(232,97,10,0.1)",
       border: `1px solid rgba(232,97,10,0.3)`,
       borderRadius: "var(--radius-md)",
@@ -212,19 +216,19 @@ function CountdownTimer() {
       </span>
       <div style={{ display: "flex", gap: 10 }}>
         {[
-          { label: "Days", value: timeLeft.days },
-          { label: "Hours", value: timeLeft.hours },
+          { label: "Days",    value: timeLeft.days },
+          { label: "Hours",   value: timeLeft.hours },
           { label: "Minutes", value: timeLeft.minutes },
           { label: "Seconds", value: timeLeft.seconds },
         ].map(u => (
           <div key={u.label} style={{ textAlign: "center" }}>
-            <div style={{
+            <div className="countdown-unit" style={{
               background: T.navy, border: `1px solid ${T.borderDark}`,
-              borderRadius: "var(--radius-sm)", padding: "8px 14px", minWidth: 52,
+              borderRadius: "var(--radius-sm)", padding: "8px 14px",
             }}>
-              <div style={{
+              <div className="countdown-digit" style={{
                 fontFamily: "var(--font-display)", fontWeight: 900,
-                fontSize: 28, color: "#fff", lineHeight: 1,
+                color: "#fff", lineHeight: 1,
               }}>
                 {String(u.value).padStart(2, "0")}
               </div>
@@ -239,7 +243,7 @@ function CountdownTimer() {
           </div>
         ))}
       </div>
-      <span style={{ fontFamily: "var(--font-body)", fontSize: 13, color: T.textDim, flexShrink: 0 }}>
+      <span className="countdown-label" style={{ fontFamily: "var(--font-body)", fontSize: 13, color: T.textDim, flexShrink: 0 }}>
         Early bird ends <strong style={{ color: "#fff" }}>{EARLY_BIRD_DATE}</strong>
       </span>
     </div>
@@ -247,24 +251,20 @@ function CountdownTimer() {
 }
 
 /* ════════════════════════════════════════════════════════
-   SECTION 1 — HERO (photo background)
-   Swap: IMAGES.hero
+   SECTION 1 — HERO
 ════════════════════════════════════════════════════════ */
 function Hero() {
   return (
     <section style={{ position: "relative", overflow: "hidden", minHeight: 640 }}>
-      {/* Photo layer */}
       <div style={{
         position: "absolute", inset: 0, zIndex: 0,
         backgroundImage: `url('${IMAGES.hero}')`,
         backgroundSize: "cover", backgroundPosition: "center 30%",
       }} />
-      {/* Dark overlay */}
       <div style={{
         position: "absolute", inset: 0, zIndex: 1,
         background: "linear-gradient(105deg, rgba(10,22,40,0.96) 0%, rgba(10,22,40,0.82) 55%, rgba(10,22,40,0.50) 100%)",
       }} />
-      {/* Grid texture */}
       <div style={{
         position: "absolute", inset: 0, zIndex: 2, pointerEvents: "none",
         backgroundImage: `
@@ -275,7 +275,6 @@ function Hero() {
       }} />
 
       <div className="container" style={{ position: "relative", zIndex: 3, padding: "100px 24px 96px" }}>
-        {/* Breadcrumb */}
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 28 }}>
           <a href="/" style={{ fontFamily: "var(--font-body)", fontSize: 13, color: T.textDim, transition: "color var(--ease-fast)" }}
             onMouseEnter={e => e.currentTarget.style.color = "#fff"}
@@ -286,7 +285,6 @@ function Hero() {
           <span style={{ fontFamily: "var(--font-body)", fontSize: 13, color: T.gold }}>For Trainers</span>
         </div>
 
-        {/* Eyebrow */}
         <div style={{
           display: "inline-flex", alignItems: "center", gap: 8,
           background: "rgba(200,168,75,0.12)", border: `1px solid rgba(200,168,75,0.3)`,
@@ -300,11 +298,10 @@ function Hero() {
           </span>
         </div>
 
-        {/* Headline */}
         <h1 style={{
           fontFamily: "var(--font-display)", fontWeight: 900,
-          fontSize: "clamp(38px, 5.5vw, 74px)",
-          color: "#fff", lineHeight: 1.0,
+          fontSize: "clamp(28px, 5.5vw, 74px)",
+          color: "#fff", lineHeight: 1.05,
           textTransform: "uppercase", letterSpacing: "0.01em",
           marginBottom: 24, maxWidth: 820,
         }}>
@@ -314,8 +311,7 @@ function Hero() {
           Prevent mistakes. Protect lives.
         </h1>
 
-        {/* Event details */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 20, marginBottom: 36 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 36 }}>
           {[
             { icon: <MapPinIcon size={15} color={T.gold} />, text: "MetroTech — Oklahoma City, OK" },
             { icon: <CalendarIcon size={15} color={T.gold} />, text: WORKSHOP_DATE },
@@ -333,7 +329,7 @@ function Hero() {
           ))}
         </div>
 
-        <div style={{ marginBottom: 36, maxWidth: 680 }}>
+        <div style={{ marginBottom: 36 }}>
           <CountdownTimer />
         </div>
 
@@ -359,7 +355,6 @@ function Hero() {
         </p>
       </div>
 
-      {/* Diagonal bottom edge */}
       <div style={{
         position: "absolute", bottom: -2, left: 0, right: 0, zIndex: 4,
         height: 60, background: T.surface,
@@ -371,6 +366,8 @@ function Hero() {
 
 /* ════════════════════════════════════════════════════════
    SECTION 2 — VALUE PROPS
+   FIX: 5th card had inline gridColumn + maxWidth which overrode
+   breakpoints. Moved to .value-card--last CSS class.
 ════════════════════════════════════════════════════════ */
 function ValueProps() {
   const items = [
@@ -401,17 +398,20 @@ function ValueProps() {
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="value-grid">
+        {/* No inline gridTemplateColumns — .value-grid CSS class handles layout */}
+        <div className="value-grid">
           {items.map((item, i) => (
-            <div key={item.solution} style={{
-              background: T.surfaceWhite,
-              borderRadius: "var(--radius-md)",
-              border: `1px solid ${T.border}`,
-              padding: "32px 32px",
-              display: "flex", gap: 20, alignItems: "flex-start",
-              transition: "transform var(--ease-base), box-shadow var(--ease-base), border-color var(--ease-base)",
-              ...(i === 4 ? { gridColumn: "1 / -1", maxWidth: "calc(50% - 10px)" } : {}),
-            }}
+            <div
+              key={item.solution}
+              className={i === 4 ? "value-card value-card--last" : "value-card"}
+              style={{
+                background: T.surfaceWhite,
+                borderRadius: "var(--radius-md)",
+                border: `1px solid ${T.border}`,
+                padding: "32px",
+                display: "flex", gap: 20, alignItems: "flex-start",
+                transition: "transform var(--ease-base), box-shadow var(--ease-base), border-color var(--ease-base)",
+              }}
               onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "var(--shadow-md)"; e.currentTarget.style.borderColor = T.gold; }}
               onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.borderColor = T.border; }}
             >
@@ -437,7 +437,6 @@ function ValueProps() {
 
 /* ════════════════════════════════════════════════════════
    SECTION 3 — GALLERY STRIP
-   Swap: IMAGES.gallery1, gallery2, gallery3
 ════════════════════════════════════════════════════════ */
 function GalleryStrip() {
   const photos = [
@@ -447,7 +446,7 @@ function GalleryStrip() {
   ];
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)" }} className="gallery-grid">
+    <div className="gallery-grid">
       {photos.map((photo, i) => (
         <div key={i} style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden" }}>
           <div style={{
@@ -459,7 +458,6 @@ function GalleryStrip() {
             onMouseEnter={e => e.currentTarget.style.transform = "scale(1.06)"}
             onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
           />
-          {/* Caption gradient overlay */}
           <div style={{
             position: "absolute", bottom: 0, left: 0, right: 0,
             background: "linear-gradient(to top, rgba(10,22,40,0.85) 0%, transparent 100%)",
@@ -477,8 +475,9 @@ function GalleryStrip() {
 }
 
 /* ════════════════════════════════════════════════════════
-   SECTION 4 — WHO SHOULD ATTEND (with trainer photo)
-   Swap: IMAGES.trainerGroup
+   SECTION 4 — WHO SHOULD ATTEND
+   FIX: Stat badge right:-20 bottom:-20 caused horizontal overflow on mobile.
+   .who-stat-badge class repositions it to inside the image on mobile.
 ════════════════════════════════════════════════════════ */
 function WhoShouldAttend() {
   const audience = [
@@ -491,9 +490,9 @@ function WhoShouldAttend() {
   return (
     <section style={{ background: T.navyMid, padding: "88px 0" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="who-grid">
+        {/* No inline gridTemplateColumns — .who-grid handles it */}
+        <div className="who-grid" style={{ gap: 64, alignItems: "center" }}>
 
-          {/* Left — photo with floating stats */}
           <div style={{ position: "relative" }}>
             <div style={{
               borderRadius: "var(--radius-md)", overflow: "hidden",
@@ -502,9 +501,9 @@ function WhoShouldAttend() {
               backgroundSize: "cover", backgroundPosition: "center top",
               boxShadow: "0 32px 80px rgba(0,0,0,0.45)",
             }} />
-            {/* Floating stat badge */}
-            <div style={{
-              position: "absolute", bottom: -20, right: -20,
+            {/* FIX: was right:-20 bottom:-20 — overflows viewport on mobile */}
+            <div className="who-stat-badge" style={{
+              position: "absolute",
               background: T.orange, borderRadius: "var(--radius-md)",
               padding: "20px 24px",
               boxShadow: "0 12px 40px rgba(232,97,10,0.4)",
@@ -512,14 +511,12 @@ function WhoShouldAttend() {
               <div style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 42, color: "#fff", lineHeight: 1 }}>20</div>
               <div style={{ fontFamily: "var(--font-body)", fontSize: 13, color: "rgba(255,255,255,0.85)", marginTop: 2 }}>Max Participants</div>
             </div>
-            {/* Gold accent bar */}
             <div style={{
               position: "absolute", top: 24, left: -8,
               width: 6, height: 80, background: T.gold, borderRadius: 3,
             }} />
           </div>
 
-          {/* Right — text */}
           <div>
             <p className="text-label text-gold" style={{ marginBottom: 12 }}>Who Should Attend</p>
             <h2 style={{
@@ -562,17 +559,16 @@ function WhoShouldAttend() {
               </p>
             </div>
 
-            {/* At a glance mini table */}
             <div style={{
               marginTop: 28, background: T.navyLight,
               borderRadius: "var(--radius-md)", border: `1px solid ${T.borderDark}`,
               borderTop: `3px solid ${T.gold}`, padding: "24px 28px",
             }}>
               {[
-                { icon: <CalendarIcon size={15} color={T.gold} />, label: "Date", value: WORKSHOP_DATE },
-                { icon: <MapPinIcon size={15} color={T.gold} />, label: "Location", value: "MetroTech, OKC" },
-                { icon: <ClockIcon size={15} color={T.gold} />, label: "Time", value: "8:00 AM – 5:00 PM" },
-                { icon: <AwardIcon size={15} color={T.gold} />, label: "Cert", value: "3-Year Certification" },
+                { icon: <CalendarIcon size={15} color={T.gold} />, label: "Date",     value: WORKSHOP_DATE },
+                { icon: <MapPinIcon size={15}  color={T.gold} />, label: "Location", value: "MetroTech, OKC" },
+                { icon: <ClockIcon size={15}   color={T.gold} />, label: "Time",     value: "8:00 AM – 5:00 PM" },
+                { icon: <AwardIcon size={15}   color={T.gold} />, label: "Cert",     value: "3-Year Certification" },
               ].map((row, i, arr) => (
                 <div key={row.label} style={{
                   display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -592,8 +588,10 @@ function WhoShouldAttend() {
 }
 
 /* ════════════════════════════════════════════════════════
-   SECTION 5 — WHAT'S INCLUDED (with workshop photo)
-   Swap: IMAGES.workshop
+   SECTION 5 — WHAT'S INCLUDED
+   FIX: Floating badges had top:-16 right:-16 and bottom:24 left:-20.
+   On mobile (single-column, full-width image) these overflow the screen.
+   Hidden via .included-badge at ≤600px.
 ════════════════════════════════════════════════════════ */
 function WhatsIncluded() {
   const included = [
@@ -607,9 +605,9 @@ function WhatsIncluded() {
   return (
     <section id="whats-included" style={{ background: T.surfaceWhite, padding: "88px 0" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="included-split-grid">
+        {/* No inline gridTemplateColumns — .included-split-grid handles it */}
+        <div className="included-split-grid" style={{ gap: 64, alignItems: "center" }}>
 
-          {/* Left — list */}
           <div>
             <p className="text-label text-orange" style={{ marginBottom: 12 }}>The Value Stack</p>
             <h2 style={{
@@ -652,7 +650,6 @@ function WhatsIncluded() {
             </p>
           </div>
 
-          {/* Right — photo with floating badges */}
           <div style={{ position: "relative" }}>
             <div style={{
               borderRadius: "var(--radius-md)", overflow: "hidden",
@@ -661,8 +658,8 @@ function WhatsIncluded() {
               backgroundSize: "cover", backgroundPosition: "center",
               boxShadow: "0 32px 80px rgba(0,0,0,0.18)",
             }} />
-            {/* Top badge */}
-            <div style={{
+            {/* Hidden on mobile — negative offsets overflow narrow screens */}
+            <div className="included-badge" style={{
               position: "absolute", top: -16, right: -16,
               background: T.navy, borderRadius: "var(--radius-md)",
               border: `2px solid ${T.gold}`, padding: "16px 20px",
@@ -671,8 +668,7 @@ function WhatsIncluded() {
               <div style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 12, letterSpacing: "0.1em", textTransform: "uppercase", color: T.gold, marginBottom: 4 }}>Includes</div>
               <div style={{ fontFamily: "var(--font-body)", fontSize: 13, color: T.textDim, lineHeight: 1.5 }}>Lunch + all<br />materials</div>
             </div>
-            {/* Bottom badge */}
-            <div style={{
+            <div className="included-badge" style={{
               position: "absolute", bottom: 24, left: -20,
               background: T.orange, borderRadius: "var(--radius-md)",
               padding: "14px 20px", boxShadow: "0 8px 28px rgba(232,97,10,0.4)",
@@ -688,16 +684,18 @@ function WhatsIncluded() {
 }
 
 /* ════════════════════════════════════════════════════════
-   SECTION 6 — CERTIFICATION (with photo + certificate card)
-   Swap: IMAGES.certification
+   SECTION 6 — CERTIFICATION
+   FIX: Certificate overlay card used bottom:-24 which clips when the
+   layout is single-column on mobile. .cert-photo-wrap adds padding-bottom
+   so the card is never cropped.
 ════════════════════════════════════════════════════════ */
 function CertDetails() {
   return (
     <section style={{ background: T.navy, padding: "88px 0" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="cert-grid">
+        {/* No inline gridTemplateColumns — .cert-grid handles it */}
+        <div className="cert-grid" style={{ gap: 64, alignItems: "center" }}>
 
-          {/* Left — text */}
           <div>
             <p className="text-label text-gold" style={{ marginBottom: 12 }}>Certification Details</p>
             <h2 style={{
@@ -740,8 +738,8 @@ function CertDetails() {
             </div>
           </div>
 
-          {/* Right — photo with certificate overlay */}
-          <div style={{ position: "relative" }}>
+          {/* .cert-photo-wrap adds padding-bottom so overlay card isn't cropped */}
+          <div className="cert-photo-wrap" style={{ position: "relative" }}>
             <div style={{
               borderRadius: "var(--radius-md)", overflow: "hidden",
               aspectRatio: "4/3",
@@ -750,7 +748,6 @@ function CertDetails() {
               boxShadow: "0 32px 80px rgba(0,0,0,0.45)",
             }} />
 
-            {/* Certificate card overlaid on photo */}
             <div style={{
               position: "absolute", bottom: -24, left: "50%",
               transform: "translateX(-50%)",
@@ -770,10 +767,10 @@ function CertDetails() {
                   left: pos.includes("left") ? 8 : "auto",
                   right: pos.includes("right") ? 8 : "auto",
                   width: 14, height: 14,
-                  borderTop: pos.includes("top") ? `2px solid ${T.gold}` : "none",
+                  borderTop:    pos.includes("top")    ? `2px solid ${T.gold}` : "none",
                   borderBottom: pos.includes("bottom") ? `2px solid ${T.gold}` : "none",
-                  borderLeft: pos.includes("left") ? `2px solid ${T.gold}` : "none",
-                  borderRight: pos.includes("right") ? `2px solid ${T.gold}` : "none",
+                  borderLeft:   pos.includes("left")   ? `2px solid ${T.gold}` : "none",
+                  borderRight:  pos.includes("right")  ? `2px solid ${T.gold}` : "none",
                   opacity: 0.6,
                 }} />
               ))}
@@ -798,6 +795,8 @@ function CertDetails() {
 
 /* ════════════════════════════════════════════════════════
    SECTION 7 — PRICING
+   FIX: 44px padding and 72px price font cause overflow on phones.
+   .pricing-panel-* classes reduce both at ≤600px.
 ════════════════════════════════════════════════════════ */
 function Pricing() {
   return (
@@ -816,7 +815,7 @@ function Pricing() {
             border: `1px solid ${T.border}`, borderTop: `5px solid ${T.orange}`,
             overflow: "hidden", boxShadow: "var(--shadow-lg)",
           }}>
-            <div style={{ background: T.navy, padding: "36px 44px" }}>
+            <div className="pricing-panel-head" style={{ background: T.navy }}>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 background: T.orange, borderRadius: "var(--radius-sm)",
@@ -824,9 +823,9 @@ function Pricing() {
               }}>
                 <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 11.5, letterSpacing: "0.1em", textTransform: "uppercase", color: "#fff" }}>🔥 Early Bird Rate — Save $100</span>
               </div>
-              <div style={{ display: "flex", alignItems: "flex-end", gap: 16 }}>
+              <div style={{ display: "flex", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
                 <div>
-                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 72, color: "#fff", lineHeight: 1 }}>$895</div>
+                  <div className="pricing-amount" style={{ fontFamily: "var(--font-display)", fontWeight: 900, color: "#fff", lineHeight: 1 }}>$895</div>
                   <div style={{ fontFamily: "var(--font-body)", fontSize: 13, color: T.textDim, marginTop: 4 }}>Until {EARLY_BIRD_DATE}</div>
                 </div>
                 <div style={{ paddingBottom: 8 }}>
@@ -836,7 +835,7 @@ function Pricing() {
               </div>
             </div>
 
-            <div style={{ padding: "28px 44px" }}>
+            <div className="pricing-panel-body">
               <p style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11.5, letterSpacing: "0.14em", textTransform: "uppercase", color: T.textMuted, marginBottom: 18 }}>Everything included in your registration:</p>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
                 {[
@@ -855,10 +854,10 @@ function Pricing() {
               </ul>
             </div>
 
-            <div style={{ padding: "0 44px 40px" }}>
+            <div className="pricing-panel-cta">
               <a href="https://vanguardbusinessconsultantsllc.com/product/certified-to-lead-advanced-fuel-trainer-workshop/"
                 className="btn btn--orange btn--lg btn--full btn--pulse"
-                style={{ fontSize: 18, marginBottom: 12 }}>
+                style={{ marginBottom: 12 }}>
                 <LockIcon size={16} color="#fff" />
                 Register Now at Early Bird Rate — $895
               </a>
@@ -880,8 +879,7 @@ function Pricing() {
 }
 
 /* ════════════════════════════════════════════════════════
-   SECTION 8 — TESTIMONIALS (smart avatar: photo or initials)
-   Swap: IMAGES.avatarLarry, IMAGES.avatarAngela
+   SECTION 8 — TESTIMONIALS
 ════════════════════════════════════════════════════════ */
 function Testimonials() {
   const testimonials = [
@@ -899,7 +897,8 @@ function Testimonials() {
           </h2>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }} className="testimonials-grid">
+        {/* No inline gridTemplateColumns — .testimonials-grid handles it */}
+        <div className="testimonials-grid" style={{ gap: 24 }}>
           {testimonials.map(t => (
             <div key={t.name} style={{
               background: T.surface, borderRadius: "var(--radius-md)",
@@ -916,7 +915,6 @@ function Testimonials() {
                 "{t.quote}"
               </blockquote>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                {/* Photo if available, otherwise initials circle */}
                 {t.photo ? (
                   <div style={{
                     width: 48, height: 48, borderRadius: "50%",
@@ -1073,20 +1071,95 @@ export default function ForTrainersPage() {
       <FinalCTA />
 
       <style jsx>{`
-        .value-grid          { grid-template-columns: 1fr 1fr; }
-        .gallery-grid        { grid-template-columns: repeat(3,1fr); }
-        .who-grid            { grid-template-columns: 1fr 1fr; }
-        .included-split-grid { grid-template-columns: 1fr 1fr; }
-        .cert-grid           { grid-template-columns: 1fr 1fr; }
-        .testimonials-grid   { grid-template-columns: 1fr 1fr; }
+        /* ══════════════════════════════════════════════
+           GRID LAYOUTS — desktop defaults
+           ALL gridTemplateColumns live here, never as
+           inline styles, so breakpoints can override.
+        ══════════════════════════════════════════════ */
+        .value-grid          { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .gallery-grid        { display: grid; grid-template-columns: repeat(3, 1fr); }
+        .who-grid            { display: grid; grid-template-columns: 1fr 1fr; }
+        .included-split-grid { display: grid; grid-template-columns: 1fr 1fr; }
+        .cert-grid           { display: grid; grid-template-columns: 1fr 1fr; }
+        .testimonials-grid   { display: grid; grid-template-columns: 1fr 1fr; }
 
-        @media (max-width: 900px) {
-          .value-grid > div:nth-child(5) { grid-column: 1; max-width: 100%; }
-          .value-grid, .who-grid, .included-split-grid, .cert-grid { grid-template-columns: 1fr; }
-          .gallery-grid { grid-template-columns: 1fr 1fr; }
+        /* 5th value card: centred single-card row on desktop */
+        .value-card--last {
+          grid-column: 1 / -1;
+          max-width: calc(50% - 10px);
+          justify-self: center;
         }
+
+        /* Who-attend stat badge: sits outside image on desktop */
+        .who-stat-badge {
+          bottom: -20px;
+          right: -20px;
+        }
+
+        /* Cert photo: bottom padding so overlay card isn't clipped */
+        .cert-photo-wrap { padding-bottom: 60px; }
+
+        /* Pricing panel padding + price font size */
+        .pricing-panel-head { padding: 36px 44px; }
+        .pricing-panel-body { padding: 28px 44px; }
+        .pricing-panel-cta  { padding: 0 44px 40px; }
+        .pricing-amount     { font-size: 72px; }
+
+        /* Countdown unit: fixed width on desktop */
+        .countdown-digit { font-size: 28px; }
+        .countdown-unit  { min-width: 52px; }
+
+        /* ══════════════════════════════════════════════
+           TABLET  ≤ 900px
+        ══════════════════════════════════════════════ */
+        @media (max-width: 900px) {
+          /* All 2-col section grids → single column */
+          .who-grid,
+          .included-split-grid,
+          .cert-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+
+          /* Value grid → single column; 5th card stops being special */
+          .value-grid         { grid-template-columns: 1fr; }
+          .value-card--last   { grid-column: 1; max-width: 100%; justify-self: stretch; }
+
+          /* Gallery → 2 columns */
+          .gallery-grid { grid-template-columns: 1fr 1fr; }
+
+          /* Stat badge: tuck inside image instead of hanging outside */
+          .who-stat-badge { bottom: 16px; right: 16px; }
+        }
+
+        /* ══════════════════════════════════════════════
+           MOBILE  ≤ 600px
+        ══════════════════════════════════════════════ */
         @media (max-width: 600px) {
-          .gallery-grid, .testimonials-grid { grid-template-columns: 1fr; }
+          /* Single column for remaining 2-col grids */
+          .gallery-grid      { grid-template-columns: 1fr; }
+          .testimonials-grid { grid-template-columns: 1fr; }
+
+          /* Floating badges overflow narrow screens — hide them */
+          .included-badge { display: none; }
+
+          /* Cert overlay needs more bottom space on narrow screens */
+          .cert-photo-wrap { padding-bottom: 100px; }
+
+          /* Reduce pricing panel padding */
+          .pricing-panel-head { padding: 24px 20px; }
+          .pricing-panel-body { padding: 20px 20px; }
+          .pricing-panel-cta  { padding: 0 20px 28px; }
+
+          /* Scale down the price so $895 doesn't overflow */
+          .pricing-amount { font-size: 52px; }
+
+          /* Tighter countdown on small phones */
+          .countdown-digit { font-size: 22px; }
+          .countdown-unit  { min-width: 40px; padding: 6px 8px !important; }
+          .countdown-wrap  { padding: 14px 16px !important; gap: 10px !important; }
+          /* Hide the "Early bird ends …" text label to save space */
+          .countdown-label { display: none; }
         }
       `}</style>
     </main>

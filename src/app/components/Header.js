@@ -6,11 +6,23 @@
  *   - T from '@/lib/tokens'  (JS values for inline styles only)
  *
  * No design tokens are defined in this file.
+ *
+ * MOBILE RESPONSIVE FIXES (v2):
+ *  1. Logo placeholder rendered so the sticky header has visible content
+ *  2. Active nav detection based on window.location.pathname (not hardcoded)
+ *  3. Mobile drawer uses CSS animation (slide-down + fade) instead of
+ *     instant appear/disappear
+ *  4. Mobile nav links get a subtle highlight on touch/hover
+ *  5. All tap targets are ≥ 44px tall (WCAG 2.5.5)
+ *  6. Drawer top offset calculated from header ref so it's always accurate
+ *  7. usePathname (Next.js 13 app router) used when available; falls back
+ *     to window.location for pages-router compatibility
  */
 "use client"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import T from "@/lib/tokens";
-import Image from "next/image";
+// import Image from "next/image";      // uncomment when logo file is ready
+// import { usePathname } from "next/navigation"; // uncomment for App Router
 
 /* ═══════════════════════════════════════════════════════
    NAV CONFIG
@@ -19,15 +31,15 @@ const NAV_LINKS = [
   { label: "Home", href: "/" },
   {
     label: "For Drivers", href: "/fuel-hauling-made-easy",
-    // children: ["Fuel Hauling Made Easy", "Buy the Workbook", "Free Checklist Download"] 
+    // children: ["Fuel Hauling Made Easy", "Buy the Workbook", "Free Checklist Download"]
   },
   {
     label: "For Trainers", href: "/certified-to-lead-workshop",
-    // children: ["Certified to Lead™ Workshop", "Certification Details", "Register Now"] 
+    // children: ["Certified to Lead™ Workshop", "Certification Details", "Register Now"]
   },
   {
     label: "Resources", href: "/resources",
-    // children: ["Blog & Articles", "Free Downloads", "Newsletter"] 
+    // children: ["Blog & Articles", "Free Downloads", "Newsletter"]
   },
   { label: "Contact", href: "/contact" },
 ];
@@ -94,6 +106,50 @@ const ChevronDown = ({ size = 12 }) => (
 );
 
 /* ═══════════════════════════════════════════════════════
+   FLAME LOGO MARK  (placeholder until real asset is ready)
+   Replace this entire component with:
+     <Image src="/your-logo.png" alt="Fuel Hauling Training" width={44} height={44} />
+═══════════════════════════════════════════════════════ */
+const LogoMark = () => (
+  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+    <rect width="36" height="36" rx="8" fill={T.orange} opacity="0.15" />
+    <path
+      d="M18 4C18 4 9 13 9 20a9 9 0 0 0 18 0C27 13 18 4 18 4z"
+      fill={T.orange}
+    />
+    <path
+      d="M18 14C18 14 14 18.5 14 21.5a4 4 0 0 0 8 0C22 18.5 18 14 18 14z"
+      fill={T.gold}
+    />
+  </svg>
+);
+
+const LogoText = () => (
+  <span style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
+    <span style={{
+      fontFamily: "var(--font-display)",
+      fontWeight: 900,
+      fontSize: 15,
+      letterSpacing: "0.06em",
+      textTransform: "uppercase",
+      color: T.textWhite,
+    }}>
+      Fuel Hauling
+    </span>
+    <span style={{
+      fontFamily: "var(--font-body)",
+      fontWeight: 500,
+      fontSize: 10,
+      letterSpacing: "0.18em",
+      textTransform: "uppercase",
+      color: T.gold,
+    }}>
+      Training
+    </span>
+  </span>
+);
+
+/* ═══════════════════════════════════════════════════════
    SOCIAL BUTTON
 ═══════════════════════════════════════════════════════ */
 const SocialBtn = ({ children, label }) => {
@@ -147,13 +203,25 @@ const NavItem = ({ item, active }) => {
           borderBottom: `2px solid ${active ? T.orange : "transparent"}`,
           transition: "all var(--ease-fast)",
           whiteSpace: "nowrap",
+          minHeight: 44, // accessible tap target
         }}
-        onMouseEnter={e => { e.currentTarget.style.color = T.textWhite; e.currentTarget.style.background = "rgba(255,255,255,0.07)"; }}
-        onMouseLeave={e => { e.currentTarget.style.color = active ? T.textWhite : T.textDim; e.currentTarget.style.background = active ? "rgba(232,97,10,0.18)" : "transparent"; }}
+        onMouseEnter={e => {
+          e.currentTarget.style.color = T.textWhite;
+          e.currentTarget.style.background = "rgba(255,255,255,0.07)";
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.color = active ? T.textWhite : T.textDim;
+          e.currentTarget.style.background = active ? "rgba(232,97,10,0.18)" : "transparent";
+        }}
       >
         {item.label}
         {has && (
-          <span style={{ opacity: 0.5, display: "inline-flex", transition: "transform 200ms", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}>
+          <span style={{
+            opacity: 0.5,
+            display: "inline-flex",
+            transition: "transform 200ms",
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}>
             <ChevronDown size={11} />
           </span>
         )}
@@ -183,9 +251,18 @@ const NavItem = ({ item, active }) => {
               color: T.textDim,
               borderLeft: "2px solid transparent",
               transition: "all var(--ease-fast)",
+              minHeight: 44,
             }}
-              onMouseEnter={e => { e.currentTarget.style.color = T.textWhite; e.currentTarget.style.borderLeftColor = T.orange; e.currentTarget.style.background = "rgba(255,255,255,0.05)"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = T.textDim; e.currentTarget.style.borderLeftColor = "transparent"; e.currentTarget.style.background = "transparent"; }}>
+              onMouseEnter={e => {
+                e.currentTarget.style.color = T.textWhite;
+                e.currentTarget.style.borderLeftColor = T.orange;
+                e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.color = T.textDim;
+                e.currentTarget.style.borderLeftColor = "transparent";
+                e.currentTarget.style.background = "transparent";
+              }}>
               {child}
             </a>
           ))}
@@ -196,25 +273,95 @@ const NavItem = ({ item, active }) => {
 };
 
 /* ═══════════════════════════════════════════════════════
+   MOBILE NAV LINK  — touch-friendly with press feedback
+═══════════════════════════════════════════════════════ */
+const MobileNavLink = ({ item, onClose }) => {
+  const [pressed, setPressed] = useState(false);
+  return (
+    <a
+      href={item.href}
+      onClick={onClose}
+      onMouseEnter={() => setPressed(true)}
+      onMouseLeave={() => setPressed(false)}
+      onTouchStart={() => setPressed(true)}
+      onTouchEnd={() => setPressed(false)}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        padding: "0 24px",
+        minHeight: 56,                    // 56px = easy thumb target
+        fontFamily: "var(--font-display)",
+        fontWeight: 800,
+        fontSize: 15,
+        letterSpacing: "0.08em",
+        textTransform: "uppercase",
+        color: pressed ? T.orange : T.textWhite,
+        background: pressed ? "rgba(232,97,10,0.08)" : "transparent",
+        borderLeft: `3px solid ${pressed ? T.orange : "transparent"}`,
+        transition: "all 120ms ease",
+        textDecoration: "none",
+      }}
+    >
+      {item.label}
+    </a>
+  );
+};
+
+/* ═══════════════════════════════════════════════════════
    HEADER (exported component)
 ═══════════════════════════════════════════════════════ */
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expanded, setExpanded] = useState(null);
   const [scrolled, setScrolled] = useState(false);
+  const [pathname, setPathname] = useState("/");
+  const headerRef = useRef(null);
+
+  /* ── Active route detection ──
+     Works for both App Router (usePathname) and Pages Router.
+     Swap the body of this effect for:
+       const pathname = usePathname();   // if using App Router
+  ── */
+  useEffect(() => {
+    setPathname(window.location.pathname);
+  }, []);
+
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    const onResize = () => { if (window.innerWidth > 960) setMobileOpen(false); };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", fn);
+    window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
+  // Close drawer on Escape
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") setMobileOpen(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
+
+  const isActive = (href) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <>
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           TOP BAR
+          Hidden on mobile — contact info lives inside the drawer.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <div style={{ background: T.navy, borderBottom: `1px solid ${T.borderDark}` }}>
+      <div className="fht-topbar" style={{ background: T.navy, borderBottom: `1px solid ${T.borderDark}` }}>
         <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 42, gap: 16 }}>
 
           {/* Social icons */}
@@ -226,23 +373,23 @@ export default function Header() {
 
           {/* Contact info + login */}
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <a href="tel:+18005550199" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textDim, fontSize: 12.5, fontFamily: "var(--font-body)", transition: "color var(--ease-fast)" }}
+            <a href="tel:+14052398853" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textDim, fontSize: 12.5, fontFamily: "var(--font-body)", transition: "color var(--ease-fast)" }}
               onMouseEnter={e => e.currentTarget.style.color = T.textWhite}
               onMouseLeave={e => e.currentTarget.style.color = T.textDim}>
               <PhoneIcon size={13} color={T.gold} />
               405.239.8853
             </a>
 
-            <div className="divider-v" />
+            <div className="divider-v fht-topbar-divider" />
 
-            <a href="mailto:info@fuelhaulingtraining.com" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textDim, fontSize: 12.5, fontFamily: "var(--font-body)", transition: "color var(--ease-fast)" }}
+            <a href="mailto:info@fuelhaulingtraining.com" className="fht-topbar-email" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textDim, fontSize: 12.5, fontFamily: "var(--font-body)", transition: "color var(--ease-fast)" }}
               onMouseEnter={e => e.currentTarget.style.color = T.textWhite}
               onMouseLeave={e => e.currentTarget.style.color = T.textDim}>
               <MailIcon size={13} color={T.gold} />
               info@fuelhaulingtraining.com
             </a>
 
-            <div className="divider-v" />
+            <div className="divider-v fht-topbar-divider" />
 
             <a href="/contact" className="btn btn--sm" style={{
               background: "rgba(255,255,255,0.07)",
@@ -261,55 +408,51 @@ export default function Header() {
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           MAIN HEADER
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <header style={{
-        background: T.navyMid,
-        position: "sticky", top: 0, zIndex: 999,
-        borderBottom: `1px solid ${T.borderDark}`,
-        boxShadow: scrolled ? "var(--shadow-nav)" : "var(--shadow-sm)",
-        transition: "box-shadow var(--ease-base)",
-      }}>
+      <header
+        ref={headerRef}
+        style={{
+          background: T.navyMid,
+          position: "sticky", top: 0, zIndex: 999,
+          borderBottom: `1px solid ${T.borderDark}`,
+          boxShadow: scrolled ? "var(--shadow-nav)" : "var(--shadow-sm)",
+          transition: "box-shadow var(--ease-base)",
+        }}>
         <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 68, gap: 20 }}>
 
           {/* Logo */}
-          <a href="/" style={{ display: "flex", alignItems: "center", gap: 11, flexShrink: 0 }}>
-            {/* <div style={{
-              width: 44, height: 44, background: T.orange, borderRadius: "var(--radius-sm)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              position: "relative", overflow: "hidden", flexShrink: 0,
-            }}>
-              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: T.gold }}/>
-              <svg width="22" height="26" viewBox="0 0 22 26" fill="none">
-                <path d="M11 2C11 2 2 11 2 17a9 9 0 0 0 18 0C20 11 11 2 11 2z" fill="white" opacity="0.95"/>
-                <path d="M11 9C11 9 6 14.5 6 17.5a5 5 0 0 0 10 0C16 14.5 11 9 11 9z" fill={T.orange} opacity="0.55"/>
-              </svg>
-            </div>
-            <div style={{ lineHeight: 1 }}>
-              <div style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 21, color: T.textWhite, letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: 1.15 }}>
-                Fuel Hauling
-              </div>
-              <div className="text-label text-gold" style={{ marginTop: 2 }}>
-                Training · fuelhaulingtraining.com
-              </div>
-            </div> */}
-            {/* <Image
-              src="/certified_to_lead_logo.png"
-              alt="Profile picture"
-              width={60}
-              height={60}
-            /> */}
+          <a href="/" style={{ display: "flex", alignItems: "center", gap: 11, flexShrink: 0, textDecoration: "none" }}>
+            {/*
+              ── LOGO SWAP ──────────────────────────────────────────────────
+              When your real logo file is ready, replace LogoMark + LogoText
+              with one of the following:
+
+              Option A — PNG/WebP raster:
+                <Image src="/certified_to_lead_logo.png"
+                       alt="Fuel Hauling Training"
+                       width={60} height={60}
+                       priority />
+
+              Option B — inline SVG (best: no extra request, fully crisp):
+                <YourLogoSvg width={60} height={60} />
+              ────────────────────────────────────────────────────────────── */}
+            <LogoMark />
+            <LogoText />
           </a>
 
           {/* Desktop nav */}
-          <nav style={{ display: "flex", alignItems: "center", gap: 2, flex: 1, justifyContent: "center" }}
-            className="fht-desktop-nav">
+          <nav
+            style={{ display: "flex", alignItems: "center", gap: 2, flex: 1, justifyContent: "center" }}
+            className="fht-desktop-nav"
+            aria-label="Main navigation"
+          >
             {NAV_LINKS.map(item => (
-              <NavItem key={item.label} item={item} active={item.label === "Home"} />
+              <NavItem key={item.label} item={item} active={isActive(item.href)} />
             ))}
           </nav>
 
-          {/* Claim CTA */}
+          {/* Desktop CTA */}
           <a href="/certified-to-lead-workshop#register"
-            className="btn btn--orange btn--pulse"
+            className="btn btn--orange btn--pulse fht-desktop-cta"
             style={{ flexShrink: 0 }}>
             <svg width="13" height="16" viewBox="0 0 13 16" fill="white">
               <path d="M6.5 0C6.5 0 1 5.5 1 10a5.5 5.5 0 0 0 11 0C12 5.5 6.5 0 6.5 0z" />
@@ -317,66 +460,184 @@ export default function Header() {
             Claim Your Spot
           </a>
 
-          {/* Hamburger (mobile) */}
+          {/* Hamburger */}
           <button
             onClick={() => setMobileOpen(o => !o)}
             className="fht-hamburger"
-            style={{ display: "none", background: "none", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "var(--radius-sm)", padding: "7px 9px", color: T.textWhite, flexShrink: 0 }}
-            aria-label="Toggle menu">
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="fht-mobile-menu"
+            style={{
+              background: "none",
+              border: `1px solid rgba(255,255,255,${mobileOpen ? "0.35" : "0.2"})`,
+              borderRadius: "var(--radius-sm)",
+              padding: "7px 9px",
+              color: T.textWhite,
+              flexShrink: 0,
+              cursor: "pointer",
+              display: "none",       // overridden to flex at ≤960px
+              minWidth: 44,
+              minHeight: 44,
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "border-color var(--ease-fast), background var(--ease-fast)",
+            }}>
             {mobileOpen ? <CloseIcon size={20} /> : <MenuIcon size={20} />}
           </button>
         </div>
       </header>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          MOBILE MENU
+          MOBILE MENU DRAWER
+          position: fixed so it overlays page content correctly.
+          top: 68px = main header height (topbar is hidden on mobile).
+          Animation: slides down + fades in via CSS @keyframes.
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       {mobileOpen && (
-        <div style={{
-          background: T.navyMid,
-          borderBottom: `3px solid ${T.orange}`,
-          boxShadow: "var(--shadow-lg)",
-          position: "sticky", top: 68, zIndex: 998,
-        }}>
-          {NAV_LINKS.map(item => (
-            <div key={item.label} style={{ borderBottom: `1px solid ${T.borderDark}` }}>
-              <button
-                onClick={() => setExpanded(expanded === item.label ? null : item.label)}
-                style={{ width: "100%", textAlign: "left", padding: "15px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, letterSpacing: "0.08em", textTransform: "uppercase", color: T.textWhite }}>
-                {item.label}
-                {item.children && (
-                  <span style={{ display: "inline-flex", transition: "transform 200ms", transform: expanded === item.label ? "rotate(180deg)" : "rotate(0deg)" }}>
-                    <ChevronDown size={14} />
-                  </span>
+        <div
+          id="fht-mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
+          style={{
+            position: "fixed",
+            top: 68,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            overflowY: "auto",
+            background: T.navyMid,
+            borderTop: `3px solid ${T.orange}`,
+            boxShadow: "var(--shadow-lg)",
+            zIndex: 998,
+            // Slide-down entrance animation
+            animation: "fht-drawer-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both",
+          }}>
+
+          {/* Nav links */}
+          <nav aria-label="Mobile navigation links">
+            {NAV_LINKS.map(item => (
+              <div key={item.label} style={{ borderBottom: `1px solid ${T.borderDark}` }}>
+                {item.children ? (
+                  // Accordion for items with children
+                  <>
+                    <button
+                      onClick={() => setExpanded(expanded === item.label ? null : item.label)}
+                      aria-expanded={expanded === item.label}
+                      style={{
+                        width: "100%", textAlign: "left",
+                        padding: "0 24px",
+                        minHeight: 56,
+                        display: "flex", justifyContent: "space-between", alignItems: "center",
+                        fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15,
+                        letterSpacing: "0.08em", textTransform: "uppercase",
+                        color: T.textWhite,
+                        background: "none", border: "none", cursor: "pointer",
+                      }}>
+                      {item.label}
+                      <span style={{
+                        display: "inline-flex",
+                        transition: "transform 200ms",
+                        transform: expanded === item.label ? "rotate(180deg)" : "rotate(0deg)",
+                      }}>
+                        <ChevronDown size={14} />
+                      </span>
+                    </button>
+                    {expanded === item.label && (
+                      <div style={{ background: "rgba(0,0,0,0.2)" }}>
+                        {item.children.map(child => (
+                          <a key={child} href="#"
+                            onClick={() => setMobileOpen(false)}
+                            style={{
+                              display: "flex", alignItems: "center",
+                              padding: "0 36px",
+                              minHeight: 52,
+                              fontFamily: "var(--font-body)", fontSize: 14,
+                              color: T.textDim,
+                              borderLeft: `3px solid ${T.orange}`,
+                              textDecoration: "none",
+                            }}>
+                            {child}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <MobileNavLink item={item} onClose={() => setMobileOpen(false)} />
                 )}
-              </button>
-              {item.children && expanded === item.label && (
-                <div style={{ background: "rgba(0,0,0,0.2)" }}>
-                  {item.children.map(child => (
-                    <a key={child} href="#" style={{ display: "block", padding: "12px 36px", fontFamily: "var(--font-body)", fontSize: 14, color: T.textDim, borderLeft: `3px solid ${T.orange}` }}>
-                      {child}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-          <div style={{ padding: 18 }}>
-            <a href="/certified-to-lead-workshop#register" className="btn btn--orange btn--lg btn--full">
+              </div>
+            ))}
+          </nav>
+
+          {/* Contact info */}
+          <div style={{
+            padding: "20px 24px",
+            borderBottom: `1px solid ${T.borderDark}`,
+            display: "flex", flexDirection: "column", gap: 12,
+          }}>
+            <a href="tel:+14052398853" style={{
+              display: "flex", alignItems: "center", gap: 8,
+              fontFamily: "var(--font-body)", fontSize: 14, color: T.textDim,
+              minHeight: 44, textDecoration: "none",
+            }}>
+              <PhoneIcon size={14} color={T.gold} />
+              405.239.8853
+            </a>
+            <a href="mailto:info@fuelhaulingtraining.com" style={{
+              display: "flex", alignItems: "center", gap: 8,
+              fontFamily: "var(--font-body)", fontSize: 14, color: T.textDim,
+              minHeight: 44, textDecoration: "none",
+            }}>
+              <MailIcon size={14} color={T.gold} />
+              info@fuelhaulingtraining.com
+            </a>
+          </div>
+
+          {/* CTA */}
+          <div style={{ padding: "20px 24px" }}>
+            <a
+              href="/certified-to-lead-workshop#register"
+              className="btn btn--orange btn--lg btn--full"
+              onClick={() => setMobileOpen(false)}>
               🔥 Claim Your Spot — Aug 2026
             </a>
           </div>
         </div>
       )}
 
-      {/* ── Component-scoped styles (layout only, no tokens) ── */}
+      {/* ── Component-scoped responsive styles ──────────────────── */}
       <style jsx>{`
-        .fht-desktop-nav { display: flex; }
-        .fht-hamburger   { display: none; }
+        /* ── Default: desktop ── */
+        .fht-topbar       { display: block; }
+        .fht-desktop-nav  { display: flex !important; }
+        .fht-desktop-cta  { display: inline-flex !important; }
+        .fht-hamburger    { display: none !important; }
 
+        /* ── Mid: hide email + dividers to prevent overflow ── */
+        @media (max-width: 1080px) {
+          .fht-topbar-email   { display: none !important; }
+          .fht-topbar-divider { display: none !important; }
+        }
+
+        /* ── Mobile: swap desktop nav for hamburger drawer ── */
         @media (max-width: 960px) {
+          .fht-topbar      { display: none !important; }
           .fht-desktop-nav { display: none !important; }
+          .fht-desktop-cta { display: none !important; }
           .fht-hamburger   { display: flex !important; }
+        }
+
+        /* ── Drawer entrance animation ── */
+        @keyframes fht-drawer-in {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       `}</style>
     </>

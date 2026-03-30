@@ -252,7 +252,7 @@ export default function Footer() {
         background: T.orange,
         padding: "28px 0",
       }}>
-        <div className="container" style={{
+        <div className="container footer-cta-band" style={{
           display: "flex", alignItems: "center",
           justifyContent: "space-between", gap: 24, flexWrap: "wrap",
         }}>
@@ -266,7 +266,7 @@ export default function Footer() {
           </div>
           <a
             href="/certified-to-lead-workshop#register"
-            className="btn btn--lg"
+            className="btn btn--lg footer-cta-btn"
             style={{ background: T.navy, color: "#fff", flexShrink: 0 }}
             onMouseEnter={e => { e.currentTarget.style.background = T.navyMid; e.currentTarget.style.transform = "translateY(-2px)"; }}
             onMouseLeave={e => { e.currentTarget.style.background = T.navy; e.currentTarget.style.transform = "translateY(0)"; }}
@@ -278,17 +278,17 @@ export default function Footer() {
 
       {/* ── Main footer body ── */}
       <div className="container" style={{ padding: "64px 24px 48px" }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "1.6fr 1fr 1fr 1fr 1fr",
-          gap: 48,
-          alignItems: "start",
-        }}
-          className="footer-grid"
-        >
 
-          {/* Col 1 — Brand + Newsletter */}
-          <div>
+        {/*
+          KEY FIX: Remove inline gridTemplateColumns from the div entirely.
+          Let the CSS class handle ALL column layout including the default.
+          Inline styles have higher specificity than class-based media queries,
+          so mixing them breaks responsiveness.
+        */}
+        <div className="footer-grid">
+
+          {/* Col 1 — Brand + Contact + Social */}
+          <div className="footer-brand-col">
             {/* Logo */}
             <a href="/" style={{ display: "inline-flex", alignItems: "center", gap: 11, marginBottom: 20 }}>
               <div style={{
@@ -362,7 +362,7 @@ export default function Footer() {
         </div>
 
         {/* Newsletter — full width row below grid */}
-        <div style={{
+        <div className="footer-newsletter" style={{
           marginTop: 56,
           padding: "36px 40px",
           background: T.navyMid,
@@ -370,12 +370,9 @@ export default function Footer() {
           border: `1px solid ${T.borderDark}`,
           borderLeft: `4px solid ${T.gold}`,
           display: "grid",
-          gridTemplateColumns: "1fr 1.2fr",
           gap: 48,
           alignItems: "center",
-        }}
-          className="footer-newsletter"
-        >
+        }}>
           <div>
             <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 26, color: "#fff", textTransform: "uppercase", letterSpacing: "0.03em", marginBottom: 10 }}>
               Free Resources for<br/>
@@ -391,7 +388,7 @@ export default function Footer() {
 
       {/* ── Bottom bar ── */}
       <div style={{ borderTop: `1px solid ${T.borderDark}` }}>
-        <div className="container" style={{
+        <div className="container footer-bottom-bar" style={{
           display: "flex", alignItems: "center",
           justifyContent: "space-between", gap: 16,
           padding: "20px 24px", flexWrap: "wrap",
@@ -401,9 +398,6 @@ export default function Footer() {
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
             {[
-              // { label: "fuelhaulingtraining.com", href: "https://fuelhaulingtraining.com" },
-              // { label: "vanguardsbconsultants.com", href: "https://vanguardsbconsultants.com" },
-              // { label: "Privacy Policy", href: "/privacy" },
               { label: "Contact", href: "/contact" },
             ].map(item => (
               <a key={item.label} href={item.href} style={{ fontFamily: "var(--font-body)", fontSize: 12.5, color: "rgba(255,255,255,0.35)", transition: "color var(--ease-fast)" }}
@@ -416,30 +410,87 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Component-scoped responsive styles only — no tokens */}
+      {/*
+        ── Responsive styles ──
+        
+        ROOT CAUSE FIX:
+        The original code set gridTemplateColumns via inline `style` on the .footer-grid div.
+        Inline styles have specificity 1-0-0-0, which always beats class-based media queries
+        (specificity 0-1-0-0). So the breakpoint overrides never fired.
+
+        Solution: Move ALL grid layout (including the desktop default) into CSS classes here.
+        Never set gridTemplateColumns via inline style on a grid container that needs responsive overrides.
+
+        Same fix applied to .footer-newsletter — its gridTemplateColumns moved to CSS.
+      */}
       <style jsx>{`
+        /* ── Main link grid ── */
         .footer-grid {
+          display: grid;
           grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+          gap: 48px;
+          align-items: start;
         }
+
+        /* ── Newsletter block ── */
         .footer-newsletter {
           grid-template-columns: 1fr 1.2fr;
         }
+
+        /* ── CTA band: stack on small screens ── */
+        .footer-cta-band {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+
+        /* ── Tablet ── */
         @media (max-width: 1024px) {
           .footer-grid {
             grid-template-columns: 1fr 1fr 1fr;
+            gap: 36px;
+          }
+          /* Brand col spans full width on its own row */
+          .footer-brand-col {
+            grid-column: 1 / -1;
           }
         }
+
+        /* ── Large mobile ── */
         @media (max-width: 640px) {
           .footer-grid {
             grid-template-columns: 1fr 1fr;
+            gap: 28px;
+          }
+          .footer-brand-col {
+            grid-column: 1 / -1;
           }
           .footer-newsletter {
             grid-template-columns: 1fr;
+            padding: 28px 20px;
+          }
+          .footer-cta-band {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .footer-cta-btn {
+            width: 100%;
+            text-align: center;
           }
         }
+
+        /* ── Small mobile ── */
         @media (max-width: 420px) {
           .footer-grid {
             grid-template-columns: 1fr;
+            gap: 24px;
+          }
+          .footer-brand-col {
+            grid-column: 1;
+          }
+          .footer-bottom-bar {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
           }
         }
       `}</style>
