@@ -33,7 +33,7 @@ const CONTACT_INFO = {
 };
 
 const ENQUIRY_TYPES = [
-  "General Enquiryt",
+  "General Enquiry",
 ];
 
 /* ════════════════════════════════════════════════════════
