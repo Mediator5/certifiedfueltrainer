@@ -490,7 +490,7 @@ function WhoShouldAttend() {
   return (
     <section style={{ background: T.navyMid, padding: "88px 0" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="who-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
           {/* Left — photo with floating stats */}
           <div style={{ position: "relative" }}>
@@ -606,7 +606,7 @@ function WhatsIncluded() {
   return (
     <section id="whats-included" style={{ background: T.surfaceWhite, padding: "88px 0" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="included-split-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
           {/* Left — list */}
           <div>
@@ -694,7 +694,7 @@ function CertDetails() {
   return (
     <section style={{ background: T.navy, padding: "88px 0" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="cert-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
           {/* Left — text */}
           <div>
@@ -898,7 +898,7 @@ function Testimonials() {
           </h2>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }} className="testimonials-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 !gap-[200px] items-center">
           {testimonials.map(t => (
             <div key={t.name} style={{
               background: T.surface, borderRadius: "var(--radius-md)",
@@ -1086,7 +1086,7 @@ export default function ForTrainersPage() {
         }
         @media (max-width: 600px) {
           .gallery-grid, .testimonials-grid { grid-template-columns: 1fr; }
-          .wh0-grid {grid-template-columns: 1fr;}
+          
         }
       `}</style>
     </main>
