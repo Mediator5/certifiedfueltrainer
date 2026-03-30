@@ -482,7 +482,7 @@ function BlogSection() {
         </div>
 
         {filtered.length > 0 ? (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }} className="blog-grid">
+          <div style={{ display: "grid", gridTemplateColumns: " 1fr", gap: 24 }} className="blog-grid">
             {filtered.map((post, i) => <BlogCard key={post.slug} post={post} featured={i === 0}/>)}
           </div>
         ) : (
@@ -530,7 +530,7 @@ function Downloads() {
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }} className="downloads-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 24 }} className="downloads-grid">
           {DOWNLOADS.map(dl => (
             <div key={dl.id} style={{
               background: "rgba(28,48,80,0.8)",
@@ -619,7 +619,7 @@ function Newsletter() {
           borderRadius: "var(--radius-md)",
           overflow: "hidden",
           boxShadow: "var(--shadow-lg)",
-          display: "grid", gridTemplateColumns: "1fr 1.2fr",
+          display: "grid", gridTemplateColumns: "1fr",
         }} className="newsletter-outer-grid">
 
           {/* Left — photo panel */}
@@ -726,7 +726,7 @@ function CTABand() {
           </h2>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }} className="cta-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 24 }} className="cta-grid">
           {options.map(opt => (
             <div key={opt.title} style={{
               background: opt.dark ? T.navy : T.surfaceWhite,

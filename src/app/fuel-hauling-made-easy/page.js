@@ -522,7 +522,7 @@ function WhoIsThisFor() {
   return (
     <section className="section section--white">
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="who-split-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 64, alignItems: "center" }} className="who-split-grid">
 
           {/* Left — photo with floating badges */}
           <div style={{ position: "relative" }}>
@@ -805,7 +805,7 @@ function Testimonials() {
           </h2>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }} className="testimonials-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 64, alignItems: "center" }} className="">
           {testimonials.map(t => (
             <div key={t.name} style={{
               background: T.surface, borderRadius: "var(--radius-md)",

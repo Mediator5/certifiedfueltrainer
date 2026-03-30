@@ -327,7 +327,7 @@ function ContactSection() {
       <div className="container">
         <div style={{
           display: "grid",
-          gridTemplateColumns: "1fr 380px",
+          gridTemplateColumns: "1fr",
           gap: 48,
           alignItems: "start",
         }} className="contact-grid">
@@ -686,7 +686,7 @@ function QuickLinks() {
           </h2>
         </div>
         <div style={{
-          display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20,
+          display: "grid", gridTemplateColumns: "1fr", gap: 20,
         }} className="quicklinks-grid">
           {links.map(link => (
             <a
