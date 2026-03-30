@@ -401,7 +401,7 @@ function ValueProps() {
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="value-grid">
+        <div className="grid grid-cols-1 !space-20 md:!grid-cols-3">
           {items.map((item, i) => (
             <div key={item.solution} style={{
               background: T.surfaceWhite,
@@ -409,8 +409,7 @@ function ValueProps() {
               border: `1px solid ${T.border}`,
               padding: "32px 32px",
               display: "flex", gap: 20, alignItems: "flex-start",
-              transition: "transform var(--ease-base), box-shadow var(--ease-base), border-color var(--ease-base)",
-              ...(i === 4 ? { gridColumn: "1 / -1", maxWidth: "calc(50% - 10px)" } : {}),
+             
             }}
               onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "var(--shadow-md)"; e.currentTarget.style.borderColor = T.gold; }}
               onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.borderColor = T.border; }}
@@ -1087,6 +1086,7 @@ export default function ForTrainersPage() {
         }
         @media (max-width: 600px) {
           .gallery-grid, .testimonials-grid { grid-template-columns: 1fr; }
+          .wh0-grid {grid-template-columns: 1fr;}
         }
       `}</style>
     </main>
