@@ -28,7 +28,8 @@ const IMAGES = {
 
   // Book cover — set to your file path when ready, e.g. "/images/book-cover.jpg"
   // null = renders the styled placeholder below
-  bookCover: "/FINAL VERSION - FRONT AND BACK COVER DESIGN - Certified to Lead Handbook.png",
+  // bookCover: "/FINAL VERSION - FRONT AND BACK COVER DESIGN - Certified to Lead Handbook.png",
+  bookCover: "/Front Cover Only - Fuel Hauling Made Easy.jpg",
 
   // Who Is This For section — driver in cab or at terminal
   driverAtTerminal: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=900&q=80",
