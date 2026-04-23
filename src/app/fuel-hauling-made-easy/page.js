@@ -227,7 +227,7 @@ function Hero() {
       }}/>
 
       <div className="container" style={{ position: "relative", zIndex: 3, padding: "100px 24px 96px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }} className="hero-grid">
+        <div style={{ gap: 48, alignItems: "center" }} className="hero-grid">
 
           {/* Left — text */}
           <div>
