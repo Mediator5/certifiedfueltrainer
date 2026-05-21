@@ -31,7 +31,10 @@ const NAV_LINKS = [
   { label: "Home", href: "/" },
   {
     label: "For Drivers", href: "/fuel-hauling-made-easy",
-    // children: ["Fuel Hauling Made Easy", "Buy the Workbook", "Free Checklist Download"]
+    children: [
+      { label: "Training & Leadership Guide", href: "/fuel-hauling-made-easy" },
+      { label: "Safe Fuel Transport Workbook", href: "/fuel-hauling-made-easy-workbook" },
+    ],
   },
   {
     label: "For Trainers", href: "/certified-to-lead-workshop",
@@ -245,13 +248,14 @@ const NavItem = ({ item, active }) => {
           boxShadow: "var(--shadow-nav)",
         }}>
           {item.children.map(child => (
-            <a key={child} href="#" style={{
+            <a key={child.label} href={child.href} style={{
               display: "block", padding: "10px 20px",
               fontFamily: "var(--font-body)", fontSize: 13.5,
               color: T.textDim,
               borderLeft: "2px solid transparent",
               transition: "all var(--ease-fast)",
               minHeight: 44,
+              textDecoration: "none",
             }}
               onMouseEnter={e => {
                 e.currentTarget.style.color = T.textWhite;
@@ -263,7 +267,7 @@ const NavItem = ({ item, active }) => {
                 e.currentTarget.style.borderLeftColor = "transparent";
                 e.currentTarget.style.background = "transparent";
               }}>
-              {child}
+              {child.label}
             </a>
           ))}
         </div>
@@ -546,7 +550,7 @@ export default function Header() {
                     {expanded === item.label && (
                       <div style={{ background: "rgba(0,0,0,0.2)" }}>
                         {item.children.map(child => (
-                          <a key={child} href="#"
+                          <a key={child.label} href={child.href}
                             onClick={() => setMobileOpen(false)}
                             style={{
                               display: "flex", alignItems: "center",
@@ -557,7 +561,7 @@ export default function Header() {
                               borderLeft: `3px solid ${T.orange}`,
                               textDecoration: "none",
                             }}>
-                            {child}
+                            {child.label}
                           </a>
                         ))}
                       </div>
