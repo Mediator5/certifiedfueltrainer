@@ -14,8 +14,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Certified to Lead",
-  description: "Certified to Lead",
+  title: {
+    default: "Certified Fuel Trainer — Fuel Hauling Training & Certification",
+    template: "%s | Certified Fuel Trainer",
+  },
+  description:
+    "Certified Fuel Trainer offers professional fuel hauling training — including the Fuel Hauling Made Easy student workbook and the Certified to Lead™ trainer workshop. Learn safe fuel transport, hazmat transportation, and DOT-compliant best practices.",
+  metadataBase: new URL("https://certifiedfueltrainer.com"),
+  openGraph: {
+    siteName: "Certified Fuel Trainer",
+    locale: "en_US",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }) {
